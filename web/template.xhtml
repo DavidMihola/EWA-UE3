@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xml:lang="de"
+      lang="de">
+
+    <head>
+        <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+        <meta name="description" content="Registrierung zum EWA Memory." />
+        <meta name="author" content="Christian Zwettler, David Mihola, Florian Mihola" />
+        <meta name="keywords" content="EWA, Entwicklung von Webanwendungen, Memory, Registrierung, Spiel" />
+
+        <title>EWA Memory Registrierung</title>
+
+        <link href="styles/reset.css" rel="stylesheet" type="text/css" media="screen" />
+        <link href="styles/screen.css" rel="stylesheet" type="text/css" media="screen" />
+
+        <!--[if gte IE 5.5]>
+        <link href="styles/ie-screen.css" rel="stylesheet" type="text/css" media="screen" />
+        <![endif]-->
+    </head>
+
+    <body>
+        <div id="wrapper">
+
+            <div id="header">
+                <img id="header_left" src="img/header_left.png"
+                     alt="EWA Memory Header Logo" />
+                <img id="header_right" src="img/header_right.png"
+                     alt="EWA Memory Header Logo" />
+            </div>
+
+            <div id="navigation">
+                <ui:insert name="navigation"/>
+            </div>
+            
+            <div id="main">
+                <ui:insert name="main"/>
+            </div>
+            <div id="footer">© 2011 EWA Memory.</div>
+        </div>
+    </body>
+</html>
