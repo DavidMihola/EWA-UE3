@@ -12,7 +12,7 @@
         <meta name="author" content="Christian Zwettler, David Mihola, Florian Mihola" />
         <meta name="keywords" content="EWA, Entwicklung von Webanwendungen, Memory, Spiel, Karten, aufdecken" />
 
-        <title>EWA Memory Spiel</title>
+        <title><h:outputText value="#{msg.ewa_memory_game}"/></title>
         <link href="styles/reset.css" rel="stylesheet" type="text/css"
               media="screen" />
         <link href="styles/screen.css" rel="stylesheet" type="text/css"
@@ -30,16 +30,16 @@
 
         <ui:define name="navigation">
             <ul title="Navigation">
-                <li><a href="?daten_aendern">Userdaten ändern</a></li>
                 <li><h:link outcome="/register.xhtml" value="#{msg.back_to_lounge}"/></li>
-                <li><a href="?logout">Ausloggen</a></li>
+                <li><h:link outcome="/register.xhtml" value="#{msg.back_to_lounge}"/></li>
+                <li><h:link outcome="/register.xhtml" value="#{msg.back_to_lounge}"/></li>
             </ul>
         </ui:define>
 
         <ui:define name="main">
             <h1 class="hidden"><h:outputText value="#{msg.ewa_memory_game}"/></h1>
             <div id="stats">
-                <h2 class="hidden">Informationen zum Spiel</h2>
+                <h2 class="hidden"><h:outputText value="#{msg.information_about_game}"/></h2>
                 <h3>Spielstand</h3>
                 <table id="current"
                        title="Spielstand im aktuellen Spiel"
@@ -90,7 +90,7 @@
                 </ul>
             </div>
             <div id="cards">
-                <h2 class="hidden">Spielfeld</h2>
+                <h2 class="hidden"><h:outputText value="#{msg.game_board}"/></h2>
                 <ul>
 
                     <li>TODO</li>

@@ -13,7 +13,7 @@
         <meta name="author" content="Christian Zwettler, David Mihola, Florian Mihola" />
         <meta name="keywords" content="EWA, Entwicklung von Webanwendungen, Memory, Registrierung, Spiel" />
 
-        <title>EWA Memory Registrierung</title>
+        <title><h:outputText value="#{msg.ewa_memory_registration}"/></title>
 
         <link href="styles/reset.css" rel="stylesheet" type="text/css" media="screen" />
         <link href="styles/screen.css" rel="stylesheet" type="text/css" media="screen" />
@@ -29,59 +29,59 @@
 
         <ui:define name="navigation">
             <ul title="Navigation">
-                <li><a href="?lounge">Zurück zur Lounge</a></li>
-                <li><a href="?login">Einloggen</a></li>
+                <li><h:link outcome="/register.xhtml" value="#{msg.back_to_lounge}"/></li>
+                <li><h:link outcome="/register.xhtml" value="#{msg.login}"/></li>
             </ul>
         </ui:define>
 
         <ui:define name="main">
-            <h1 class="hidden">EWA Memory Registrierung</h1>
+
+            <h1 class="hidden"><h:outputText value="#{msg.ewa_memory_registration}"/></h1>
+            
             <div id="content">
                 <h2><h:outputText value="#{msg.register_title}"/></h2>
                 <p><h:outputText value="#{msg.register_message}"/></p>
-                <h:form id="user_form">
-                    <h:panelGroup layout="block" styleClass="feld">
-                        <h:outputLabel value="#{msg.first_name}" for="first_name"/>
-                        <h:inputText id="first_name"/>
-                    </h:panelGroup>
-                    <h:panelGroup layout="block" styleClass="feld">
-                        <h:outputLabel value="#{msg.last_name}" for="last_name"/>
-                        <h:inputText id="last_name"/>
-                    </h:panelGroup>
-                    <h:panelGroup layout="block" styleClass="feld">
-                        <h:outputLabel value="#{msg.date_of_birth}" for="date_of_birth"/>
-                        <h:inputText id="date_of_birth"/>
-                    </h:panelGroup>
-                    <h:panelGroup layout="block" styleClass="feld">
-                        <h:outputLabel value="#{msg.first_name}" for="first_name"/>
-                        <h:selectOneMenu id="sex">
-                            <f:selectItem itemLabel="#{msg.female}" itemValue="f"/>
-                            <f:selectItem itemLabel="#{msg.male}" itemValue="m"/>
-                        </h:selectOneMenu>
-                    </h:panelGroup>
-                </h:form>
-
-                <form id="register" method="post" action="">
+                <h:form id="user_form" >
                     <fieldset>
                         <legend><h:outputText value="#{msg.personal_data}"/></legend>
-                        <div class="feld"><label for="vorname">Vorname</label><input type="text" name="vorname" id="vorname" tabindex="1" /></div>
-                        <div class="feld"><label for="nachname">Nachname</label><input type="text" name="nachname" id="nachname" tabindex="2" /></div>
-                        <div class="feld"><label for="geburtsdatum">Geburtsdatum</label><input type="text" name="geburtsdatum" id="geburtsdatum" tabindex="3" /></div>
-                        <div class="feld"><label for="geschlecht">Geschlecht</label><select name="geschlecht" id="geschlecht" tabindex="4">
-                                <option value="w" selected="selected">weiblich</option>
-                                <option value="m">männlich</option>
-                            </select>
-                        </div>
+                        <h:panelGroup layout="block" styleClass="feld">
+                            <h:outputLabel value="#{msg.first_name}" for="first_name"/>
+                            <h:inputText id="first_name"/>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" styleClass="feld">
+                            <h:outputLabel value="#{msg.last_name}" for="last_name"/>
+                            <h:inputText id="last_name"/>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" styleClass="feld">
+                            <h:outputLabel value="#{msg.date_of_birth}" for="date_of_birth"/>
+                            <h:inputText id="date_of_birth"/>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" styleClass="feld">
+                            <h:outputLabel value="#{msg.first_name}" for="first_name"/>
+                            <h:selectOneMenu id="sex">
+                                <f:selectItem itemLabel="#{msg.female}" itemValue="f"/>
+                                <f:selectItem itemLabel="#{msg.male}" itemValue="m"/>
+                            </h:selectOneMenu>
+                        </h:panelGroup>
                     </fieldset>
                     <fieldset>
-                        <legend>Login Daten und Größe des Stack</legend>
-                        <div class="feld"><label for="username">Username</label><input type="text" name="username" id="username" tabindex="5" /></div>
-                        <div class="feld"><label for="passwort">Passwort</label><input type="text" name="passwort" id="passwort" tabindex="6" /></div>
-                        <div class="feld"><label for="stackgroesse">Größe des Stack</label><input type="text" name="stackgroesse" id="stackgroesse" tabindex="7" /></div>
+                        <legend><h:outputText value="#{msg.login_data_stack_size}"/></legend>
+                        <h:panelGroup layout="block" styleClass="feld">
+                            <h:outputLabel value="#{msg.username}" for="username"/>
+                            <h:inputText id="username"/>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" styleClass="feld">
+                            <h:outputLabel value="#{msg.password}" for="password"/>
+                            <h:inputText id="password"/>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" styleClass="feld">
+                            <h:outputLabel value="#{msg.stack_size}" for="stack_size"/>
+                            <h:inputText id="stack_size"/>
+                        </h:panelGroup>
                     </fieldset>
-                    <div class="buttonwrapper"><input type="submit" name="registrieren" id="registrieren" value="Registrieren" tabindex="8" /></div>
-                </form>
-            </div>
+                    <h:commandButton id="register" value="#{msg.register_title}"/>
+                </h:form>
+        </div>
         </ui:define>
 
     </ui:composition>
