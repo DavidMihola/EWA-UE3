@@ -3,7 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xml:lang="de"
-      lang="de">
+      lang="de"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
 
     <head>
         <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
@@ -35,11 +37,33 @@
         <ui:define name="main">
             <h1 class="hidden">EWA Memory Registrierung</h1>
             <div id="content">
-                <h2>Registrieren</h2>
-                <p>Bitte füllen Sie das untenstehende Formular aus!</p>
+                <h2><h:outputText value="#{msg.register_title}"/></h2>
+                <p><h:outputText value="#{msg.register_message}"/></p>
+                <h:form id="user_form">
+                    <h:panelGroup layout="block" styleClass="feld">
+                        <h:outputLabel value="#{msg.first_name}" for="first_name"/>
+                        <h:inputText id="first_name"/>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" styleClass="feld">
+                        <h:outputLabel value="#{msg.last_name}" for="last_name"/>
+                        <h:inputText id="last_name"/>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" styleClass="feld">
+                        <h:outputLabel value="#{msg.date_of_birth}" for="date_of_birth"/>
+                        <h:inputText id="date_of_birth"/>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" styleClass="feld">
+                        <h:outputLabel value="#{msg.first_name}" for="first_name"/>
+                        <h:selectOneMenu id="sex">
+                            <f:selectItem itemLabel="#{msg.female}" itemValue="f"/>
+                            <f:selectItem itemLabel="#{msg.male}" itemValue="m"/>
+                        </h:selectOneMenu>
+                    </h:panelGroup>
+                </h:form>
+
                 <form id="register" method="post" action="">
                     <fieldset>
-                        <legend>Persönliche Daten</legend>
+                        <legend><h:outputText value="#{msg.personal_data}"/></legend>
                         <div class="feld"><label for="vorname">Vorname</label><input type="text" name="vorname" id="vorname" tabindex="1" /></div>
                         <div class="feld"><label for="nachname">Nachname</label><input type="text" name="nachname" id="nachname" tabindex="2" /></div>
                         <div class="feld"><label for="geburtsdatum">Geburtsdatum</label><input type="text" name="geburtsdatum" id="geburtsdatum" tabindex="3" /></div>
