@@ -54,7 +54,10 @@
                         </h:panelGroup>
                         <h:panelGroup layout="block" styleClass="feld">
                             <h:outputLabel value="#{msg.date_of_birth}" for="date_of_birth"/>
-                            <h:inputText id="date_of_birth"/>
+                            <h:inputText id="date_of_birth">
+                                <f:validator validatorId="DateValidator"/>
+                                <!--TODO hier fehlt noch der Custon Validator für TT.MM.JJJJ -->
+                            </h:inputText>
                         </h:panelGroup>
                         <h:panelGroup layout="block" styleClass="feld">
                             <h:outputLabel value="#{msg.first_name}" for="first_name"/>
@@ -68,11 +71,19 @@
                         <legend><h:outputText value="#{msg.login_data_stack_size}"/></legend>
                         <h:panelGroup layout="block" styleClass="feld">
                             <h:outputLabel value="#{msg.username}" for="username"/>
-                            <h:inputText id="username"/>
+                            <h:inputText id="username">
+                                <f:validateRequired/>
+                                <f:validateRegex pattern="[a-zA-Z]*"/>
+                            </h:inputText>
                         </h:panelGroup>
                         <h:panelGroup layout="block" styleClass="feld">
                             <h:outputLabel value="#{msg.password}" for="password"/>
-                            <h:inputText id="password"/>
+                            <h:inputText id="password">
+                                <f:validateRequired/>
+                                <f:validateLength minimum="8"/>
+                                <f:validateRegex pattern="[a-zA-Z0-9]*[0-9][a-zA-Z0-9]*"/>
+                                <f:validateRegex pattern="[a-zA-Z0-9]*[a-zA-Z][a-zA-Z0-9]*"/>
+                            </h:inputText>
                         </h:panelGroup>
                         <h:panelGroup layout="block" styleClass="feld">
                             <h:outputLabel value="#{msg.stack_size}" for="stack_size"/>
