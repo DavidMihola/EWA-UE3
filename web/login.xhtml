@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xml:lang="de"
+      lang="de"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <head>
+        <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+        <meta name="description" content="Registrierung zum EWA Memory." />
+        <meta name="author" content="Christian Zwettler, David Mihola, Florian Mihola" />
+        <meta name="keywords" content="EWA, Entwicklung von Webanwendungen, Memory, Registrierung, Spiel" />
+
+        <title><h:outputText value="#{msg.ewa_memory_registration}"/></title>
+
+        <link href="styles/reset.css" rel="stylesheet" type="text/css" media="screen" />
+        <link href="styles/screen.css" rel="stylesheet" type="text/css" media="screen" />
+
+        <!--[if gte IE 5.5]>
+        <link href="styles/ie-screen.css" rel="stylesheet" type="text/css" media="screen" />
+        <![endif]-->
+    </head>
+
+    <body>
+
+    <ui:composition template="./template.xhtml">
+
+        <ui:define name="navigation">
+            <ul title="Navigation">
+                <li><h:link outcome="/register.xhtml" value="#{msg.back_to_lounge}"/></li>
+                <li><h:link outcome="/register.xhtml" value="#{msg.login}"/></li>
+            </ul>
+        </ui:define>
+
+        <ui:define name="main">
+
+            <h1 class="hidden"><h:outputText value="#{msg.ewa_memory_registration}"/></h1>
+
+            <div id="content">
+                <h2><h:outputText value="#{msg.register_title}"/></h2>
+                <p><h:outputText value="#{msg.register_message}"/></p>
+                <h:form id="user_form" >
+
+                    <fieldset>
+                        <legend><h:outputText value="#{msg.login_data_stack_size}"/></legend>
+                        <h:panelGroup layout="block" styleClass="feld">
+                            <h:outputLabel value="#{msg.username}" for="username"/>
+                            <h:inputText id="username">
+                                <f:validateRequired/>
+                                <f:validateRegex pattern="[a-zA-Z]*"/>
+                            </h:inputText>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" styleClass="feld">
+                            <h:outputLabel value="#{msg.password}" for="password"/>
+                            <h:inputText id="password">
+                                <f:validateRequired/>
+                                <f:validateLength minimum="8"/>
+                                <f:validateRegex pattern="[a-zA-Z0-9]*[0-9][a-zA-Z0-9]*"/>
+                                <f:validateRegex pattern="[a-zA-Z0-9]*[a-zA-Z][a-zA-Z0-9]*"/>
+                            </h:inputText>
+                        </h:panelGroup>
+                
+                    </fieldset>
+                    <h:commandButton id="register" value="#{msg.register_title}"/>
+                </h:form>
+        </div>
+        </ui:define>
+
+    </ui:composition>
+
+</body>
+</html>
