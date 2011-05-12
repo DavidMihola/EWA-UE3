@@ -14,7 +14,7 @@ import userDB.SimpleUserDataBase;
  *
  * @author david
  */
-@ManagedBean
+@ManagedBean(name="userDataBaseBean", eager=true)
 @ApplicationScoped
 public class UserDataBaseBean implements UserDataBase {
 

@@ -17,6 +17,7 @@ public class SimpleUserDataBase implements UserDataBase{
 
     public SimpleUserDataBase() {
         users = new HashMap<String, String>();
+        addUser("David", "david2901");
     }
 
     @Override
