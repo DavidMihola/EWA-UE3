@@ -9,6 +9,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
+import java.io.Serializable;
+
 import memory.MemoryGame;
 
 /**
@@ -17,7 +19,7 @@ import memory.MemoryGame;
  */
 @ManagedBean(name="userSessionBean")
 @SessionScoped
-public class UserSessionBean {
+public class UserSessionBean implements Serializable {
     @ManagedProperty(value="#{userDataBaseBean}")
     private UserDataBaseBean userDataBaseBean;
 
@@ -29,6 +31,7 @@ public class UserSessionBean {
     /** Creates a new instance of UserSessionBean */
     public UserSessionBean() {
         game = new MemoryGame();
+        loggedIn = false;
     }
 
     public UserDataBaseBean getUserDataBaseBean() {
@@ -68,7 +71,7 @@ public class UserSessionBean {
             this.loggedIn = true;
         }
 
-        return("/login.xhtml");
+        return("/table.xhtml");
     }
 
     public String getLoginStatus() {

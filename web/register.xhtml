@@ -5,7 +5,8 @@
       xml:lang="de"
       lang="de"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <head>
         <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
@@ -42,43 +43,49 @@
                 <h2><h:outputText value="#{msg.register_title}"/></h2>
                 <p><h:outputText value="#{msg.register_message}"/></p>
                 <h:form id="user_form" >
-                    <fieldset>
-                        <legend><h:outputText value="#{msg.personal_data}"/></legend>
-                        <h:panelGroup layout="block" styleClass="feld">
-                            <h:outputLabel value="#{msg.first_name}" for="first_name"/>
-                            <h:inputText id="first_name"/>
-                        </h:panelGroup>
-                        <h:panelGroup layout="block" styleClass="feld">
-                            <h:outputLabel value="#{msg.last_name}" for="last_name"/>
-                            <h:inputText id="last_name"/>
-                        </h:panelGroup>
-                        <h:panelGroup layout="block" styleClass="feld">
-                            <h:outputLabel value="#{msg.date_of_birth}" for="date_of_birth"/>
-                            <h:inputText id="date_of_birth">
-                                <f:validator validatorId="DateValidator"/>
-                                <!--TODO hier fehlt noch der Custon Validator für TT.MM.JJJJ -->
-                            </h:inputText>
-                        </h:panelGroup>
-                        <h:panelGroup layout="block" styleClass="feld">
-                            <h:outputLabel value="#{msg.first_name}" for="first_name"/>
-                            <h:selectOneMenu id="sex">
-                                <f:selectItem itemLabel="#{msg.female}" itemValue="f"/>
-                                <f:selectItem itemLabel="#{msg.male}" itemValue="m"/>
-                            </h:selectOneMenu>
-                        </h:panelGroup>
-                    </fieldset>
+                    <h:selectBooleanCheckbox id="additional_data" value="#{userRegistrationBean.additionalData}">
+                        <!--<f:ajax event="click" render="additional_data_form"/> wie geht das?-->
+                    </h:selectBooleanCheckbox>
+                    <h:outputLabel value="#{msg.register_additional_data}" for="additional_data"/>
+                    <c:if test="#{userRegistrationBean.additionalData}">
+                        <fieldset>
+                            <legend><h:outputText value="#{msg.personal_data}"/></legend>
+                            <h:panelGroup layout="block" styleClass="feld">
+                                <h:outputLabel value="#{msg.first_name}" for="first_name"/>
+                                <h:inputText id="first_name"/>
+                            </h:panelGroup>
+                            <h:panelGroup layout="block" styleClass="feld">
+                                <h:outputLabel value="#{msg.last_name}" for="last_name"/>
+                                <h:inputText id="last_name"/>
+                            </h:panelGroup>
+                            <h:panelGroup layout="block" styleClass="feld">
+                                <h:outputLabel value="#{msg.date_of_birth}" for="date_of_birth"/>
+                                <h:inputText id="date_of_birth">
+                                    <f:validator validatorId="DateValidator"/>
+                                    <!--TODO hier fehlt noch der Custon Validator für TT.MM.JJJJ -->
+                                </h:inputText>
+                            </h:panelGroup>
+                            <h:panelGroup layout="block" styleClass="feld">
+                                <h:outputLabel value="#{msg.first_name}" for="first_name"/>
+                                <h:selectOneMenu id="sex">
+                                    <f:selectItem itemLabel="#{msg.female}" itemValue="f"/>
+                                    <f:selectItem itemLabel="#{msg.male}" itemValue="m"/>
+                                </h:selectOneMenu>
+                            </h:panelGroup>
+                        </fieldset>
+                    </c:if>
                     <fieldset>
                         <legend><h:outputText value="#{msg.login_data_stack_size}"/></legend>
                         <h:panelGroup layout="block" styleClass="feld">
                             <h:outputLabel value="#{msg.username}" for="username"/>
-                            <h:inputText id="username">
+                            <h:inputText id="username" value="#{userRegistrationBean.username}">
                                 <f:validateRequired/>
                                 <f:validateRegex pattern="[a-zA-Z]*"/>
                             </h:inputText>
                         </h:panelGroup>
                         <h:panelGroup layout="block" styleClass="feld">
                             <h:outputLabel value="#{msg.password}" for="password"/>
-                            <h:inputText id="password">
+                            <h:inputText id="password" value="#{userRegistrationBean.password}">
                                 <f:validateRequired/>
                                 <f:validateLength minimum="8"/>
                                 <f:validateRegex pattern="[a-zA-Z0-9]*[0-9][a-zA-Z0-9]*"/>
@@ -90,7 +97,7 @@
                             <h:inputText id="stack_size"/>
                         </h:panelGroup>
                     </fieldset>
-                    <h:commandButton id="register" value="#{msg.register_title}"/>
+                    <h:commandButton id="register" value="#{msg.register_title}" action="#{userRegistrationBean.register}"/>
                 </h:form>
         </div>
         </ui:define>
