@@ -38,17 +38,18 @@
         <ui:define name="main">
 
             <h1 class="hidden"><h:outputText value="#{msg.ewa_memory_registration}"/></h1>
-            
+
             <div id="content">
                 <h2><h:outputText value="#{msg.register_title}"/></h2>
                 <p><h:outputText value="#{msg.register_message}"/></p>
                 <h:form id="user_form" >
                     <h:selectBooleanCheckbox id="additional_data" value="#{userRegistrationBean.additionalData}">
-                        <!--<f:ajax event="click" render="additional_data_form"/> wie geht das?-->
+                        <f:ajax render="additional_data_fields"/> <!--wie geht das?-->
                     </h:selectBooleanCheckbox>
                     <h:outputLabel value="#{msg.register_additional_data}" for="additional_data"/>
-                    <c:if test="#{userRegistrationBean.additionalData}">
-                        <fieldset>
+
+                    <h:panelGroup layout="block" id="additional_data_fields">
+                        <c:if test="#{userRegistrationBean.additionalData}">
                             <legend><h:outputText value="#{msg.personal_data}"/></legend>
                             <h:panelGroup layout="block" styleClass="feld">
                                 <h:outputLabel value="#{msg.first_name}" for="first_name"/>
@@ -62,7 +63,6 @@
                                 <h:outputLabel value="#{msg.date_of_birth}" for="date_of_birth"/>
                                 <h:inputText id="date_of_birth">
                                     <f:validator validatorId="DateValidator"/>
-                                    <!--TODO hier fehlt noch der Custon Validator für TT.MM.JJJJ -->
                                 </h:inputText>
                             </h:panelGroup>
                             <h:panelGroup layout="block" styleClass="feld">
@@ -72,8 +72,9 @@
                                     <f:selectItem itemLabel="#{msg.male}" itemValue="m"/>
                                 </h:selectOneMenu>
                             </h:panelGroup>
-                        </fieldset>
-                    </c:if>
+                        </c:if>
+                    </h:panelGroup>
+
                     <fieldset>
                         <legend><h:outputText value="#{msg.login_data_stack_size}"/></legend>
                         <h:panelGroup layout="block" styleClass="feld">
@@ -99,7 +100,7 @@
                     </fieldset>
                     <h:commandButton id="register" value="#{msg.register_title}" action="#{userRegistrationBean.register}"/>
                 </h:form>
-        </div>
+            </div>
         </ui:define>
 
     </ui:composition>
