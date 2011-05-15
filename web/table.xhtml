@@ -47,25 +47,25 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Du</th>
-                            <th>Gegner</th>
+                            <th><h:outputText value="#{memoryGameBean.player1Name}"/></th>
+                            <th><h:outputText value="#{memoryGameBean.player2Name}"/></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <th>Paare</th>
-                            <td>TODO</td>
-                            <td>TODO</td>
+                            <td><h:outputText value="#{memoryGameBean.player1Score}"/></td>
+                            <td><h:outputText value="#{memoryGameBean.player2Score}"/></td>
                         </tr>
                         <tr>
                             <th>Versuche</th>
-                            <td>TODO</td>
-                            <td>TODO</td>
+                            <td><h:outputText value="#{memoryGameBean.player1Tries}"/></td>
+                            <td><h:outputText value="#{memoryGameBean.player2Tries}"/></td>
                         </tr>
                         <tr>
                             <th>Zeit</th>
-                            <td>TODO</td>
-                            <td>TODO</td>
+                            <td><h:outputText value="#{memoryGameBean.player1Time}"/></td>
+                            <td><h:outputText value="#{memoryGameBean.player2Time}"/></td>
                         </tr>
                     </tbody>
                 </table>
@@ -99,7 +99,7 @@
             </div>
             <hr class="solid_clear" />
         </ui:define>
-        
+
     </ui:composition>
 
 </body>

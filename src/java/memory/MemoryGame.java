@@ -10,5 +10,25 @@ package memory;
  * @author david
  */
 public class MemoryGame {
+    private MemoryPlayer player1;
+    private MemoryPlayer player2;
 
+    public MemoryGame() {
+    }
+
+    public void setPlayer1(MemoryPlayer player) {
+        this.player1 = player;
+    }
+
+    public MemoryPlayer getPlayer1() {
+        return player1;
+    }
+
+    public void setPlayer2(MemoryPlayer player) {
+        this.player2 = player;
+    }
+
+    public MemoryPlayer getPlayer2() {
+        return player2;
+    }
 }
