@@ -11,21 +11,22 @@ package memory;
  */
 public class MemoryPlayer {
     private final String name;
-    private int score;
+    private int pairs;
     private int tries;
 
 
     public MemoryPlayer(String name) {
         this.name = name;
-        score = 0;
+        pairs = 0;
+        tries = 0;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getScore() {
-        return score;
+    public int getPairs() {
+        return pairs;
     }
 
     public int getTries() {

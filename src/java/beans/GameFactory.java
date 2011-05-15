@@ -38,6 +38,7 @@ public class GameFactory {
         String name = userSessionBean.getUsername();
         game.setPlayer1(new MemoryPlayer(name));
         game.setPlayer2(new MemoryPlayer("Gegner"));
+        // game.setBoard(new MemoryBoard(TODO));
         userSessionBean.setCurrentGame(game);
         return ("/table.xhtml");
     }

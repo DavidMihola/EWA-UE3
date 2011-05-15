@@ -12,6 +12,7 @@ package memory;
 public class MemoryGame {
     private MemoryPlayer player1;
     private MemoryPlayer player2;
+    private MemoryBoard board;
 
     public MemoryGame() {
     }
@@ -30,5 +31,13 @@ public class MemoryGame {
 
     public MemoryPlayer getPlayer2() {
         return player2;
+    }
+
+    public void setBoard(MemoryBoard board) {
+        this.board = board;
+    }
+
+    public MemoryBoard getBoard() {
+        return board;
     }
 }

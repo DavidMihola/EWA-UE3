@@ -54,18 +54,18 @@
                     <tbody>
                         <tr>
                             <th>Paare</th>
-                            <td>TODO</td>
-                            <td>TODO</td>
+                            <td><h:outputText value="#{userSessionBean.currentGame.player1.pairs}"/></td>
+                            <td><h:outputText value="#{userSessionBean.currentGame.player2.pairs}"/></td>
                         </tr>
                         <tr>
                             <th>Versuche</th>
-                            <td>TODO</td>
-                            <td>TODO</td>
+                            <td><h:outputText value="#{userSessionBean.currentGame.player1.tries}"/></td>
+                            <td><h:outputText value="#{userSessionBean.currentGame.player2.tries}"/></td>
                         </tr>
                         <tr>
                             <th>Zeit</th>
-                            <td>TODO</td>
-                            <td>TODO</td>
+                            <td><h:outputText value="#{userSessionBean.currentGame.player1.time}"/></td>
+                            <td><h:outputText value="#{userSessionBean.currentGame.player2.time}"/></td>
                         </tr>
                     </tbody>
                 </table>
@@ -76,7 +76,7 @@
                     <tbody>
                         <tr>
                             <th>Restliche Paare</th>
-                            <td>TODO</td>
+                            <td><!--<h:outputText value="#{userSessionBean.currentGame.board.remainingPairs}"/>--></td>
                         </tr>
                     </tbody>
                 </table>
