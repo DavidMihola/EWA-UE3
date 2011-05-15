@@ -47,7 +47,7 @@
             <p><h:outputText value="#{msg.logout_message}"/></p>
             <h:form id="login_form" >
                 <h:commandButton id="register" value="#{msg.logout}" action="#{userLoginBean.logout}"/>
-                <h:commandButton id="start_game" value="#{msg.start_game}" action="#{memoryGameBean.start}"/>
+                <h:commandButton id="start_game" value="#{msg.start_game}" action="#{gameFactory.createAndJoinGame}"/>
             </h:form>
         </c:if>
 

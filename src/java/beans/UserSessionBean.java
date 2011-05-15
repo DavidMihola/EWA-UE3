@@ -20,12 +20,12 @@ import memory.MemoryGame;
 @SessionScoped
 public class UserSessionBean implements Serializable {
 
-    private MemoryGame game;
+    private MemoryGame currentGame;
     private String username;
 
     /** Creates a new instance of UserSessionBean */
     public UserSessionBean() {
-        game = new MemoryGame();
+        currentGame = null;
         username = null;
     }
 
@@ -47,5 +47,13 @@ public class UserSessionBean implements Serializable {
         } else {
             return ("You are not logged in");
         }
+    }
+
+    public void setCurrentGame(MemoryGame game) {
+        this.currentGame = game;
+    }
+
+    public MemoryGame getCurrentGame() {
+        return currentGame;
     }
 }
