@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package beans;
 
 import javax.faces.bean.ManagedBean;
@@ -17,37 +16,21 @@ import memory.MemoryGame;
  *
  * @author david
  */
-@ManagedBean(name="userSessionBean")
+@ManagedBean(name = "userSessionBean")
 @SessionScoped
 public class UserSessionBean implements Serializable {
-    @ManagedProperty(value="#{userDataBaseBean}")
-    private UserDataBaseBean userDataBaseBean;
 
-    private boolean loggedIn;
     private MemoryGame game;
     private String username;
-    private String password;
 
     /** Creates a new instance of UserSessionBean */
     public UserSessionBean() {
         game = new MemoryGame();
-        loggedIn = false;
-    }
-
-    public UserDataBaseBean getUserDataBaseBean() {
-        return this.userDataBaseBean;
-    }
-
-    public void setUserDataBaseBean(UserDataBaseBean userDataBaseBean) {
-        this.userDataBaseBean = userDataBaseBean;
+        username = null;
     }
 
     public boolean getLoggedIn() {
-        return loggedIn;
-    }
-
-    public void setLoggedIn(boolean loggedIn) {
-        this.loggedIn = loggedIn;
+        return (username != null);
     }
 
     public String getUsername() {
@@ -58,24 +41,8 @@ public class UserSessionBean implements Serializable {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String login() {
-        if (userDataBaseBean.loginUser(username, password)) {
-            this.loggedIn = true;
-        }
-
-        return("/table.xhtml");
-    }
-
     public String getLoginStatus() {
-        if (loggedIn) {
+        if (getLoggedIn()) {
             return ("You are logged in as " + username);
         } else {
             return ("You are not logged in");

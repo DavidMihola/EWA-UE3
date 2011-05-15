@@ -5,7 +5,8 @@
       xml:lang="de"
       lang="de"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:mc="http://java.sun.com/jsf/composite/ezcomp">
 
     <head>
         <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
@@ -38,32 +39,9 @@
             <h1 class="hidden"><h:outputText value="#{msg.ewa_memory_login}"/></h1>
 
             <div id="content">
-                <h2><h:outputText value="#{msg.login_title}"/></h2>
-                <p><h:outputText value="#{msg.login_message}"/></p>
-                <h:form id="user_form" >
+               
+                <mc:loginForm/>
 
-                    <fieldset>
-                        <legend><h:outputText value="#{msg.login_data_stack_size}"/></legend>
-                        <h:panelGroup layout="block" styleClass="feld">
-                            <h:outputLabel value="#{msg.username}" for="username"/>
-                            <h:inputText id="username" value="#{userSessionBean.username}">
-                                <f:validateRequired/>
-                                <f:validateRegex pattern="[a-zA-Z]*"/>
-                            </h:inputText>
-                        </h:panelGroup>
-                        <h:panelGroup layout="block" styleClass="feld">
-                            <h:outputLabel value="#{msg.password}" for="password"/>
-                            <h:inputText id="password" value="#{userSessionBean.password}">
-                                <f:validateRequired/>
-                                <f:validateLength minimum="8"/>
-                                <f:validateRegex pattern="[a-zA-Z0-9]*[0-9][a-zA-Z0-9]*"/>
-                                <f:validateRegex pattern="[a-zA-Z0-9]*[a-zA-Z][a-zA-Z0-9]*"/>
-                            </h:inputText>
-                        </h:panelGroup>
-                
-                    </fieldset>
-                    <h:commandButton id="register" value="#{msg.login}" action="#{userSessionBean.login}"/>
-                </h:form>
                 <h:outputText value="#{userSessionBean.loginStatus}"/>
         </div>
         </ui:define>
