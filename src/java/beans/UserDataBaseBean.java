@@ -10,6 +10,9 @@ import javax.faces.bean.ApplicationScoped;
 
 import userDB.UserDataBase;
 import userDB.SimpleUserDataBase;
+import userDB.UserDataBaseUser;
+
+import java.util.Collection;
 /**
  *
  * @author david
@@ -40,4 +43,11 @@ public class UserDataBaseBean implements UserDataBase {
         return db.loginUser(username, password);
     }
 
+    public UserDataBaseUser getUser(String username) {
+        return db.getUser(username);
+    }
+
+    public Collection<UserDataBaseUser> getUsers() {
+        return db.getUsers();
+    }
 }

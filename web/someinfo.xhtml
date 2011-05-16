@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xml:lang="de"
+      lang="de"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <head>
+        <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+        <meta name="description" content="EWA Memory Spiel" />
+        <meta name="author" content="Christian Zwettler, David Mihola, Florian Mihola" />
+        <meta name="keywords" content="EWA, Entwicklung von Webanwendungen, Memory, Spiel, Karten, aufdecken" />
+
+        <title><h:outputText value="#{msg.ewa_memory_game}"/></title>
+        <link href="styles/reset.css" rel="stylesheet" type="text/css"
+              media="screen" />
+        <link href="styles/screen.css" rel="stylesheet" type="text/css"
+              media="screen" />
+
+        <!--[if lt IE 8]>
+        <link href="styles/ie-screen.css" rel="stylesheet" type="text/css"
+	media="screen" />
+        <![endif]-->
+
+    </head>
+
+    <body>
+    <ui:composition template="./template.xhtml">
+
+        <ui:define name="navigation">
+            <ul title="Navigation">
+                <li><h:link outcome="/register.xhtml" value="#{msg.back_to_lounge}"/></li>
+                <li><h:link outcome="/register.xhtml" value="#{msg.back_to_lounge}"/></li>
+                <li><h:link outcome="/register.xhtml" value="#{msg.back_to_lounge}"/></li>
+            </ul>
+        </ui:define>
+
+        <ui:define name="main">
+            <div id="content">
+                <ol>
+                    <c:forEach items="#{userDataBaseBean.users}" var="u">
+                        <li><h:outputText value="#{u.username}"/> (<h:outputText value="#{u.realName}"/>)</li>
+                    </c:forEach>
+                </ol>
+            </div>
+        </ui:define>
+
+    </ui:composition>
+
+</body>
+</html>

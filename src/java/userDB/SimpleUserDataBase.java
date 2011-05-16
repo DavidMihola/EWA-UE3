@@ -7,23 +7,25 @@ package userDB;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Collection;
 /**
  *
  * @author david
  */
 public class SimpleUserDataBase implements UserDataBase{
 
-    private Map<String, String> users;
+    private Map<String, UserDataBaseUser> users;
 
     public SimpleUserDataBase() {
-        users = new HashMap<String, String>();
+        users = new HashMap<String, UserDataBaseUser>();
         addUser("David", "david2901");
     }
 
     @Override
     public void addUser(String username, String password) {
+        UserDataBaseUser user = new UserDataBaseUser(username, password);
         if (! userExists(username) ) {
-            users.put(username, password);
+            users.put(username, user);
         }
     }
 
@@ -38,7 +40,14 @@ public class SimpleUserDataBase implements UserDataBase{
             return false;
         }
         
-        return (users.get(username).equals(password));
+        return (users.get(username).isPassword(password));
     }
 
+    public UserDataBaseUser getUser(String username) {
+        return users.get(username);
+    }
+
+    public Collection<UserDataBaseUser> getUsers() {
+        return users.values();
+    }
 }

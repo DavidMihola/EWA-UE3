@@ -5,6 +5,8 @@
 
 package userDB;
 
+import java.util.Collection;
+
 /**
  *
  * @author david
@@ -15,4 +17,8 @@ public interface UserDataBase {
     public boolean userExists(String username);
 
     public boolean loginUser(String username, String password);
+
+    public UserDataBaseUser getUser(String username);
+
+    public Collection<UserDataBaseUser> getUsers();
 }

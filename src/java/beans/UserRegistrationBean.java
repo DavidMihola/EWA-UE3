@@ -11,6 +11,11 @@ import javax.faces.bean.ManagedProperty;
 
 import java.io.Serializable;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+
+import userDB.UserDataBaseUser;
 /**
  *
  * @author florian
@@ -113,6 +118,15 @@ public class UserRegistrationBean implements Serializable {
 
     public String register() {
         userDataBaseBean.addUser(username, password);
+        if (additionalData) {
+            UserDataBaseUser user = userDataBaseBean.getUser(username);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+            try {
+                user.setAdditionalData(firstname, lastname, dateFormat.parse(dateOfBirth));
+            } catch(ParseException e) {
+                user.setAdditionalData(firstname, lastname, null);
+            }
+        }
         return "/login.xhtml";
     }
 }
