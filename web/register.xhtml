@@ -44,12 +44,12 @@
                 <p><h:outputText value="#{msg.register_message}"/></p>
                 <h:form id="user_form" >
                     <h:selectBooleanCheckbox id="additional_data" value="#{userRegistrationBean.additionalData}">
-                        <f:ajax render="additional_data_fields"/> <!--wie geht das?-->
+                        <f:ajax render="user_form"/> <!--wie geht das?-->
                     </h:selectBooleanCheckbox>
                     <h:outputLabel value="#{msg.register_additional_data}" for="additional_data"/>
 
-                    <h:panelGroup layout="block" id="additional_data_fields">
-                        <c:if test="#{userRegistrationBean.additionalData}">
+                    <h:panelGroup layout="block" id="additional_data_fields" rendered="#{userRegistrationBean.additionalData}">
+                        <fieldset>
                             <legend><h:outputText value="#{msg.personal_data}"/></legend>
                             <h:panelGroup layout="block" styleClass="feld">
                                 <h:outputLabel value="#{msg.first_name}" for="first_name"/>
@@ -72,7 +72,7 @@
                                     <f:selectItem itemLabel="#{msg.male}" itemValue="m"/>
                                 </h:selectOneMenu>
                             </h:panelGroup>
-                        </c:if>
+                        </fieldset>
                     </h:panelGroup>
 
                     <fieldset>
