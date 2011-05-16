@@ -53,21 +53,21 @@
                             <legend><h:outputText value="#{msg.personal_data}"/></legend>
                             <h:panelGroup layout="block" styleClass="feld">
                                 <h:outputLabel value="#{msg.first_name}" for="first_name"/>
-                                <h:inputText id="first_name"/>
+                                <h:inputText id="first_name" value="#{userRegistrationBean.firstname}"/>
                             </h:panelGroup>
                             <h:panelGroup layout="block" styleClass="feld">
                                 <h:outputLabel value="#{msg.last_name}" for="last_name"/>
-                                <h:inputText id="last_name"/>
+                                <h:inputText id="last_name" value="#{userRegistrationBean.lastname}"/>
                             </h:panelGroup>
                             <h:panelGroup layout="block" styleClass="feld">
                                 <h:outputLabel value="#{msg.date_of_birth}" for="date_of_birth"/>
-                                <h:inputText id="date_of_birth">
+                                <h:inputText id="date_of_birth" value="#{userRegistrationBean.dateOfBirth}">
                                     <f:validator validatorId="DateValidator"/>
                                 </h:inputText>
                             </h:panelGroup>
                             <h:panelGroup layout="block" styleClass="feld">
                                 <h:outputLabel value="#{msg.first_name}" for="first_name"/>
-                                <h:selectOneMenu id="sex">
+                                <h:selectOneMenu id="sex" value="#{userRegistrationBean.sex}">
                                     <f:selectItem itemLabel="#{msg.female}" itemValue="f"/>
                                     <f:selectItem itemLabel="#{msg.male}" itemValue="m"/>
                                 </h:selectOneMenu>
@@ -95,7 +95,7 @@
                         </h:panelGroup>
                         <h:panelGroup layout="block" styleClass="feld">
                             <h:outputLabel value="#{msg.stack_size}" for="stack_size"/>
-                            <h:inputText id="stack_size"/>
+                            <h:inputText id="stack_size" value="#{userRegistrationBean.stackSize}"/>
                         </h:panelGroup>
                     </fieldset>
                     <h:commandButton id="register" value="#{msg.register_title}" action="#{userRegistrationBean.register}"/>
