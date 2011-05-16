@@ -16,6 +16,10 @@
         <base-name>i18n</base-name>
         <var>msg</var>
       </resource-bundle>
+      <message-bundle>
+          error_messages
+      </message-bundle>
+
     </application>
 </faces-config>
 
