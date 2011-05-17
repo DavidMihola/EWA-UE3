@@ -4,7 +4,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xml:lang="de"
       lang="de"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
 
     <head>
         <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
@@ -38,6 +39,7 @@
 
         <ui:define name="main">
             <h1 class="hidden"><h:outputText value="#{msg.ewa_memory_game}"/></h1>
+            <h:form id="dynamic">
             <div id="stats">
                 <h2 class="hidden"><h:outputText value="#{msg.information_about_game}"/></h2>
                 <h3>Spielstand</h3>
@@ -91,12 +93,32 @@
             </div>
             <div id="cards">
                 <h2 class="hidden"><h:outputText value="#{msg.game_board}"/></h2>
-                <ul>
+                <table summary="Diese Tabelle stellt das Memory-Brett mit den Karten dar">
+                            <tr class="hidden">
+                                <th>Kartenspalte 1</th>
+                                <th>Kartenspalte 2</th>
+                                <th>Kartenspalte 3</th>
+                                <th>Kartenspalte 4</th>
+                                <th>Kartenspalte 5</th>
 
-                    <li>TODO</li>
-
-                </ul>
+                            </tr>
+                           <f:ajax  render="visible_card">
+                                <ui:repeat value="#{userSessionBean.currentGame.board.cards}" var="row" >
+                                    <tr>
+                                        <th class="hidden">Kartenzeile #{userSessionBean.currentGame.board.cards.indexOf(row)+1}</th>
+                                        <ui:repeat value="#{row}" var="card" >
+                                            <td class="#{userSessionBean.currentGame.board.cards.indexOf(card).isRevealed?'visible_card':'invisible_card'}">
+                                                <h:commandLink id="visible_card" action="#{userSessionBean.currentGame.board.cards.indexOf(card).reveal}">
+                                                    <h:graphicImage name="#{userSessionBean.currentGame.board.cards.indexOf(card).isRevealed?userSessionBean.test:userSessionBean.backcardpath}" alt="card"/>
+                                                </h:commandLink>
+                                            </td>
+                                        </ui:repeat>
+                                    </tr>
+                                </ui:repeat>
+                           </f:ajax>
+                </table>
             </div>
+            </h:form>
             <hr class="solid_clear" />
         </ui:define>
 

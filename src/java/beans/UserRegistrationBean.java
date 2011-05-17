@@ -28,7 +28,7 @@ public class UserRegistrationBean implements Serializable {
     
     private String username;
     private String password;
-    private int stackSize;
+    private int stackSize = 4;
 
     private boolean additionalData;
     private String firstname;

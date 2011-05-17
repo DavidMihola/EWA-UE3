@@ -22,6 +22,7 @@ public class UserSessionBean implements Serializable {
 
     private MemoryGame currentGame;
     private String username;
+    private String backcardpath = "../img/card_background.png";
 
     /** Creates a new instance of UserSessionBean */
     public UserSessionBean() {
@@ -56,4 +57,9 @@ public class UserSessionBean implements Serializable {
     public MemoryGame getCurrentGame() {
         return currentGame;
     }
+
+    public String getBackcardpath() {
+        return backcardpath;
+    }
+
 }
