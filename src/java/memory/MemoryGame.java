@@ -17,6 +17,10 @@ public class MemoryGame {
     private final String backcardpath = "../img/card_background.png";
 
     public MemoryGame(int pairs) {
+        board = new MemoryBoard<String>();
+        // hier sollte man pairs mal ein Paar hinzufügen
+        board.addPair("front1", "back");
+        board.addPair("front2", "back");
     }
 
     public void setPlayer1(MemoryPlayer player) {
