@@ -4,6 +4,9 @@
  */
 package memory;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  *
  * @author david
@@ -14,17 +17,39 @@ public class MemoryGame {
     private MemoryPlayer player2;
     private MemoryBoard board;
     private final String backcardpath = "../img/card_background.png";
-
     private MemoryPlayer currentPlayer;
 
     public MemoryGame(int pairs) {
         board = new MemoryBoard<String>();
-        // hier sollte man pairs mal ein Paar hinzufügen
-        // TODO: pairs berücksichtigen
-        board.addPair("../img/cards/at.jpg", "../img/card_background.png");
-        board.addPair("../img/cards/cz.jpg", "../img/card_background.png");
-        board.addPair("../img/cards/de.jpg", "../img/card_background.png");
-    }
+
+        ArrayList<String> allFlagPaths = new ArrayList<String>();
+
+        allFlagPaths.add("../img/cards/at.jpg");
+        allFlagPaths.add("../img/cards/cz.jpg");
+        allFlagPaths.add("../img/cards/de.jpg");
+        allFlagPaths.add("../img/cards/dk.jpg");
+        allFlagPaths.add("../img/cards/es.jpg");
+        allFlagPaths.add("../img/cards/fi.jpg");
+        allFlagPaths.add("../img/cards/fr.jpg");
+        allFlagPaths.add("../img/cards/gr.jpg");
+        allFlagPaths.add("../img/cards/it.jpg");
+        allFlagPaths.add("../img/cards/jp.jpg");
+        allFlagPaths.add("../img/cards/kr.jpg");
+        allFlagPaths.add("../img/cards/no.jpg");
+        allFlagPaths.add("../img/cards/pt.jpg");
+        allFlagPaths.add("../img/cards/ro.jpg");
+        allFlagPaths.add("../img/cards/se.jpg");
+        allFlagPaths.add("../img/cards/tr.jpg");
+        allFlagPaths.add("../img/cards/uk.jpg");
+        allFlagPaths.add("../img/cards/us.jpg");
+
+        Collections.shuffle(allFlagPaths);
+
+        for (int i = 1; i <= pairs; i++) {
+            board.addPair(allFlagPaths.get(i), backcardpath);
+        }
+        
+     }
 
     public void setPlayer1(MemoryPlayer player) {
         this.player1 = player;
@@ -53,7 +78,7 @@ public class MemoryGame {
     public void tryCard(int index) {
         board.tryCard(index);
         if (board.getState() != MemoryBoardState.UNFINISHED_TURN) {
-            currentPlayer.addTry();
+            currentPlayer.incTries();
         }
     }
 
@@ -61,6 +86,4 @@ public class MemoryGame {
         board.start();
         currentPlayer = player1;
     }
-
-
 }
