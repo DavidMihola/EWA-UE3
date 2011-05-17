@@ -37,4 +37,7 @@ public class MemoryPlayer {
         return("TODO");
     }
 
+    public void addTry() {
+        tries++;
+    }
 }

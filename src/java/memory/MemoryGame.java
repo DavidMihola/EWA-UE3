@@ -19,8 +19,10 @@ public class MemoryGame {
     public MemoryGame(int pairs) {
         board = new MemoryBoard<String>();
         // hier sollte man pairs mal ein Paar hinzufügen
-        board.addPair("front1", "back");
-        board.addPair("front2", "back");
+        // TODO: pairs berücksichtigen
+        board.addPair("../img/cards/at.jpg", "../img/card_background.png");
+        board.addPair("../img/cards/cz.jpg", "../img/card_background.png");
+        board.addPair("../img/cards/de.jpg", "../img/card_background.png");
     }
 
     public void setPlayer1(MemoryPlayer player) {
@@ -45,5 +47,10 @@ public class MemoryGame {
 
     public MemoryBoard getBoard() {
         return board;
+    }
+
+    public void tryCardPlayer1(int index) {
+        if (board.tryCard(index) != MemoryBoardState.UNFINISHED_TURN)
+            player1.addTry();
     }
 }

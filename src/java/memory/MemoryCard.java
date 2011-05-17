@@ -5,6 +5,7 @@ public class MemoryCard<T> {
     private T front;
     private T back;
     private boolean isRevealed;
+    private int index;
 
     public MemoryCard(T front, T back) {
         this.front = front;
@@ -38,5 +39,13 @@ public class MemoryCard<T> {
 
     public String toString() {
         return front.toString();
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public int getIndex() {
+        return index;
     }
 }

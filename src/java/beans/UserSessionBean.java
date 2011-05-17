@@ -12,6 +12,8 @@ import java.io.Serializable;
 
 import memory.MemoryGame;
 
+import javax.faces.event.ActionEvent;
+
 /**
  *
  * @author david
@@ -23,6 +25,8 @@ public class UserSessionBean implements Serializable {
     private MemoryGame currentGame;
     private String username;
     private String backcardpath = "../img/card_background.png";
+
+    private String indexString; /* ugly */
 
     /** Creates a new instance of UserSessionBean */
     public UserSessionBean() {
@@ -62,4 +66,12 @@ public class UserSessionBean implements Serializable {
         return backcardpath;
     }
 
+    /* ugly */
+    public void setIndexString(ActionEvent event) {
+        indexString = (String) event.getComponent().getAttributes().get("index");
+    }
+    public void tryCard() {
+        currentGame.tryCardPlayer1(Integer.parseInt(indexString));
+    }
+    /* /ugly */
 }

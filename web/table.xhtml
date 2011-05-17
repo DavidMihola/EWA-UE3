@@ -95,6 +95,7 @@
                     <h2 class="hidden"><h:outputText value="#{msg.game_board}"/></h2>
 
                     <!-- das ui:remove wirkt wie ein Kommentar, der auch für EL-Ausdrücke funktioniert -->
+                    <!-- mit dem zusätzlichen Vorteil dass der Editor es nicht als Kommentar kennzeichnet -->
                     <ui:remove>
                         <table summary="Diese Tabelle stellt das Memory-Brett mit den Karten dar">
                             <tr class="hidden">
@@ -105,20 +106,23 @@
                                 <th>Kartenspalte 5</th>
 
                             </tr>
-                            <f:ajax  render="visible_card">
                                 <ui:repeat value="#{userSessionBean.currentGame.board.cards}" var="row" >
                                     <tr>
                                         <th class="hidden">Kartenzeile #{userSessionBean.currentGame.board.cards.indexOf(row)+1}</th>
-                                    <ui:repeat value="#{row}" var="card" >
-                                        <td class="#{userSessionBean.currentGame.board.cards.indexOf(card).isRevealed?'visible_card':'invisible_card'}">
-                                        <h:commandLink id="visible_card" action="#{userSessionBean.currentGame.board.cards.indexOf(card).reveal}">
-                                            <h:graphicImage name="#{userSessionBean.currentGame.board.cards.indexOf(card).isRevealed?userSessionBean.test:userSessionBean.backcardpath}" alt="card"/>
-                                        </h:commandLink>
+                                    <ui:repeat value="#{userSessionBean.currentGame.board.cards}" var="card" >
+                                        <td class="#{card.isRevealed?'visible_card':'invisible_card'}">
+                                            <h:graphicImage value="#{card.visibleSide}" >
+
+                                                <f:ajax action="#{}userSessionBean.currentgame.boary.tryCard}">
+                                        <f:param name="index" value="#{card.index}"/>
+                                    </f:ajax>
+
+
+                                            </h:graphicImage>
                                         </td>
                                     </ui:repeat>
                                     </tr>
                                 </ui:repeat>
-                            </f:ajax>
                         </table>
                     </ui:remove>
 
@@ -130,9 +134,24 @@
                     
                     <h:panelGrid columns="2" styleClass="table">
                         <ui:repeat value="#{userSessionBean.currentGame.board.cards}" var="card">
-                            <h:outputLink value="#{card.front}">
-                                <h:graphicImage value="./img/card_background.png"></h:graphicImage>
-                            </h:outputLink>
+                            <ui:remove>
+                            <h:commandLink id="visible_card"
+                                           action="#{userSessionBean.tryCard}">
+                                <h:graphicImage value="#{card.visibleSide}"
+                                                alt="Karte Nummer #{card.index} aufdecken"/>
+                                    <!-- TODO: msg.card_alt_{head,tail}-->
+
+                                <f:param name="index" value="#{card.index}"/>
+                            </h:commandLink>
+                            </ui:remove>
+                            <f:ajax>
+                            <h:commandLink value="#{card.index}" actionListener="#{userSessionBean.setIndexString}" action="${userSessionBean.tryCard}">
+                                <f:attribute name="index" value="#{card.index}"/>
+                                <h:graphicImage value="#{card.visibleSide}"
+                                                alt="Karte Nummer #{card.index} aufdecken"/>
+                                    <!-- TODO: msg.card_alt_{head,tail}-->
+                            </h:commandLink>
+                            </f:ajax>
                         </ui:repeat>
                     </h:panelGrid>
 

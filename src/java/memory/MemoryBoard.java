@@ -39,6 +39,13 @@ public class MemoryBoard<T> {
         //if (!started) {
         remainingPairs = cards.size() / 2;
         Collections.shuffle(cards);
+
+        // now that cards are shuffled, index'em
+        int i = 0;
+        for (MemoryCard card : cards) {
+            card.setIndex(i++);
+        }
+
         started = true;
         nextTurn();
         //}
