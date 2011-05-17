@@ -12,7 +12,7 @@ import java.util.Collection;
  * @author david
  */
 public interface UserDataBase {
-    public void addUser(String username, String password);
+    public void addUser(String username, String password, int stackSize);
 
     public boolean userExists(String username);
 

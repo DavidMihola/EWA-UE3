@@ -34,7 +34,7 @@ public class GameFactory {
     }
 
     public String createAndJoinGame() {
-        MemoryGame game = new MemoryGame(2);
+        MemoryGame game = new MemoryGame(userSessionBean.getUser().getStackSize());
         String name = userSessionBean.getUsername();
         game.setPlayer1(new MemoryPlayer(name));
         game.setPlayer2(new MemoryPlayer("Gegner"));

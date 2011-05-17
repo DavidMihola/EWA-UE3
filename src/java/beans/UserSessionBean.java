@@ -11,6 +11,7 @@ import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 
 import memory.*;
+import userDB.UserDataBaseUser;
 
 import javax.faces.event.ActionEvent;
 
@@ -24,6 +25,7 @@ public class UserSessionBean implements Serializable {
 
     private MemoryGame currentGame;
     private String username;
+    private UserDataBaseUser user;
     private String backcardpath = "../img/card_background.png";
     private String indexString; /* ugly */
 
@@ -46,6 +48,13 @@ public class UserSessionBean implements Serializable {
         this.username = username;
     }
 
+    public UserDataBaseUser getUser() {
+        return user;
+    }
+
+    public void setUser(UserDataBaseUser user) {
+        this.user = user;
+    }
     public String getLoginStatus() {
         if (getLoggedIn()) {
             return ("You are logged in as " + username);

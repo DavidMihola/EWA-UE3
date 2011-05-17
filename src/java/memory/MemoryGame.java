@@ -16,10 +16,16 @@ public class MemoryGame {
     private MemoryPlayer player1;
     private MemoryPlayer player2;
     private MemoryBoard board;
-    private final String backcardpath = "../img/card_background.png";
+    private final String backcardpath = null; //"../img/card_background.png";
     private MemoryPlayer currentPlayer;
+    private final int stackSize;
+    private final MemoryCard[][] cardMatrix;
 
-    public MemoryGame(int pairs) {
+    public MemoryGame(int stackSize) {
+        this.stackSize = stackSize;
+
+        int pairs = stackSize * stackSize / 2;
+        
         board = new MemoryBoard<String>();
 
         ArrayList<String> allFlagPaths = new ArrayList<String>();
@@ -48,8 +54,27 @@ public class MemoryGame {
         for (int i = 1; i <= pairs; i++) {
             board.addPair(allFlagPaths.get(i), backcardpath);
         }
+
+        cardMatrix = new MemoryCard[stackSize][stackSize];
+        int row = 0;
+        int col = 0;
+
+        ArrayList<MemoryCard<String>> cardList = board.getCards();
+
+        for (MemoryCard<String> card : cardList) {
+            cardMatrix[row][col] = card;
+            col ++;
+            if (col >= stackSize) {
+                row++;
+                col = 0;
+            }
+        }
         
      }
+
+    public MemoryCard<String>[][] getRows() {
+        return cardMatrix;
+    }
 
     public void setPlayer1(MemoryPlayer player) {
         this.player1 = player;

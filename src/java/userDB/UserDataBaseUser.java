@@ -14,14 +14,16 @@ public class UserDataBaseUser {
 
     private String username, password;
     private String firstname, lastname;
+    private int stackSize;
     private Date dateOfBirth;
 
     public UserDataBaseUser() {
     }
 
-    public UserDataBaseUser(String username, String password) {
+    public UserDataBaseUser(String username, String password, int stackSize) {
         this.username = username;
         this.password = password;
+        this.stackSize = stackSize;
     }
 
     public boolean isPassword(String password) {
@@ -38,7 +40,15 @@ public class UserDataBaseUser {
         return username;
     }
 
+    public int getStackSize() {
+        return stackSize;
+    }
+
     public String getRealName() {
         return firstname + " " + lastname;
+    }
+
+    public String getAsString() {
+        return username + " " + password + " " + stackSize;
     }
 }

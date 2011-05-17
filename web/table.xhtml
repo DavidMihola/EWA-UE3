@@ -80,7 +80,7 @@
                             <tr>
                                 <th>Restliche Paare</th>
                                 <td><h:outputText value="#{userSessionBean.currentGame.board.remainingPairs}"/></td>
-                            </tr>
+                        </tr>
                         </tbody>
                     </table>
 
@@ -107,7 +107,7 @@
                                 <th>Kartenspalte 5</th>
 
                             </tr>
-                            <ui:repeat value="#{userSessionBean.currentGame.board.cards}" var="row" >
+                            <ui:repeat value="#{userSessionBean.currentGame.rows}" var="row" >
                                 <tr>
                                     <th class="hidden">Kartenzeile #{userSessionBean.currentGame.board.cards.indexOf(row)+1}</th>
                                 <ui:repeat value="#{userSessionBean.currentGame.board.cards}" var="card" >
@@ -127,37 +127,28 @@
                         </table>
                     </ui:remove>
 
-                    <!-- ich denke die Aufteilung in Zeilen und Spalten bekommen wir am einfachsten
-                    dadurch, dass wir hier statt dem 2er einfach den gewünschten Wert per EL aus irgendeiner
-                    Bean auslesen; dann können wir die Verwaltung der Karten als Liste beibehalten und
-                    brauchen uns sonst nirgends um Zeilen und Spalten kümmern. D. h. wir haben dann
-                    zwar eine Tabelle, die Karten wären aber einfach von 1 bis n² durchnummeriert -->
-
-                    <h:panelGrid columns="2" styleClass="table">
-                        <ui:repeat value="#{userSessionBean.currentGame.board.cards}" var="card">
-                            <ui:remove>
-                                <h:commandLink id="visible_card"
-                                               action="#{userSessionBean.tryCard}">
-                                    <h:graphicImage value="#{card.visibleSide}"
-                                                    alt="Karte Nummer #{card.index} aufdecken"/>
-                                    <!-- TODO: msg.card_alt_{head,tail}-->
-
-                                    <f:param name="index" value="#{card.index}"/>
-                                </h:commandLink>
-                            </ui:remove>
-
-                                <h:commandButton value="#{card.index}" actionListener="#{userSessionBean.setIndexString}" action="${userSessionBean.clickCard}">
+                    <table>
+                        <ui:repeat value="#{userSessionBean.currentGame.rows}" var="row">
+                            <tr>
+                            <ui:repeat value="#{row}" var="card">
+                                <td class="flag">
+                                <h:commandLink actionListener="#{userSessionBean.setIndexString}" action="${userSessionBean.clickCard}">
                                     <f:attribute name="index" value="#{card.index}"/>
-                                    <h:graphicImage value="#{card.visibleSide}"
+                                    <h:graphicImage rendered="#{card.revealed}"
+                                                    value="#{card.visibleSide}"
                                                     alt="Karte Nummer #{card.index} aufdecken"/>
                                     <!-- TODO: msg.card_alt_{head,tail}-->
                                     <!-- hier sollte irgendwie weniger neu gezeichnet werden als @form
                                     aber ich komm nicht drauf, wie... -->
                                     <f:ajax execute="@form" render="@form"/>
-                                </h:commandButton>
+                                </h:commandLink>
+                                </td>
+                            </ui:repeat>
+                            </tr>
                         </ui:repeat>
-                    </h:panelGrid>
+                    </table>
 
+    
                 </div>
                 <h:outputText value="#{userSessionBean.currentGame.board.state}"/>
             </h:form>

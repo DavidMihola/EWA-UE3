@@ -18,12 +18,12 @@ public class SimpleUserDataBase implements UserDataBase{
 
     public SimpleUserDataBase() {
         users = new HashMap<String, UserDataBaseUser>();
-        addUser("David", "david2901");
+        addUser("David", "david2901", 2);
     }
 
     @Override
-    public void addUser(String username, String password) {
-        UserDataBaseUser user = new UserDataBaseUser(username, password);
+    public void addUser(String username, String password, int stackSize) {
+        UserDataBaseUser user = new UserDataBaseUser(username, password, stackSize);
         if (! userExists(username) ) {
             users.put(username, user);
         }

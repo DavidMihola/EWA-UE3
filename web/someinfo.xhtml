@@ -41,7 +41,7 @@
             <div id="content">
                 <ol>
                     <c:forEach items="#{userDataBaseBean.users}" var="u">
-                        <li><h:outputText value="#{u.username}"/> (<h:outputText value="#{u.realName}"/>)</li>
+                        <li><h:outputText value="#{u.asString}"/> (<h:outputText value="#{u.realName}"/>)</li>
                     </c:forEach>
                 </ol>
             </div>

@@ -28,7 +28,7 @@ public class UserRegistrationBean implements Serializable {
     
     private String username;
     private String password;
-    private int stackSize = 4;
+    private int stackSize = 2;
 
     private boolean additionalData;
     private String firstname;
@@ -117,7 +117,7 @@ public class UserRegistrationBean implements Serializable {
     }
 
     public String register() {
-        userDataBaseBean.addUser(username, password);
+        userDataBaseBean.addUser(username, password, stackSize);
         if (additionalData) {
             UserDataBaseUser user = userDataBaseBean.getUser(username);
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");

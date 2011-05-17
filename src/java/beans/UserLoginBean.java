@@ -62,6 +62,7 @@ public class UserLoginBean {
     public String login() {
         if (userDataBaseBean.loginUser(username, password)) {
             userSessionBean.setUsername(username);
+            userSessionBean.setUser(userDataBaseBean.getUser(username));
         }
         return ("/login.xhtml");
     }
