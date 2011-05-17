@@ -2,32 +2,41 @@ package memory;
 
 public class MemoryCard<T> {
 
-	private T content;
-	private boolean revealed;
+    private T front;
+    private T back;
+    private boolean isRevealed;
 
-	public MemoryCard (T content) {
-		this.content = content;
-		revealed = false;
-	}
+    public MemoryCard(T front, T back) {
+        this.front = front;
+        this.back = back;
+        isRevealed = false;
+    }
 
-	public boolean isRevealed() {
-		return revealed;
-	}
+    public boolean isRevealed() {
+        return isRevealed;
+    }
 
-	public void reveal() {
-		revealed = true;
-	}
+    public void reveal() {
+        isRevealed = true;
+    }
 
-	public void hide() {
-		revealed = false;
-	}
+    public void hide() {
+        isRevealed = false;
+    }
 
-	public T getContent() {
-		return content;
-	}
+    public T getFront() {
+        return front;
+    }
 
-	public String toString() {
-		return content.toString();
-	}
+    public T getBack() {
+        return back;
+    }
 
+    public T getVisibleSide() {
+        return (isRevealed ? getFront() : getBack());
+    }
+
+    public String toString() {
+        return front.toString();
+    }
 }

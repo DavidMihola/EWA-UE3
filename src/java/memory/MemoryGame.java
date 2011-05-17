@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package memory;
 
 /**
@@ -10,11 +9,14 @@ package memory;
  * @author david
  */
 public class MemoryGame {
+
     private MemoryPlayer player1;
     private MemoryPlayer player2;
     private MemoryBoard board;
 
-    public MemoryGame() {
+    private final String backcardpath = "../img/card_background.png";
+
+    public MemoryGame(int pairs) {
     }
 
     public void setPlayer1(MemoryPlayer player) {
