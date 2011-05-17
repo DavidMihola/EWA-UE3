@@ -39,7 +39,7 @@ public class GameFactory {
         game.setPlayer1(new MemoryPlayer(name));
         game.setPlayer2(new MemoryPlayer("Gegner"));
         // game.setBoard(new MemoryBoard(TODO)); // or NOT TODO ?
-        game.getBoard().start();
+        game.start();
         userSessionBean.setCurrentGame(game);
         return ("/table.xhtml");
     }

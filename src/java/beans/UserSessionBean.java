@@ -68,10 +68,12 @@ public class UserSessionBean implements Serializable {
 
     /* ugly */
     public void setIndexString(ActionEvent event) {
-        indexString = (String) event.getComponent().getAttributes().get("index");
+        indexString = event.getComponent().getAttributes().get("index").toString();
     }
-    public void tryCard() {
-        currentGame.tryCardPlayer1(Integer.parseInt(indexString));
+
+    public String tryCard() {
+        currentGame.tryCard(Integer.parseInt(indexString));
+        return("/table.xhtml");
     }
     /* /ugly */
 }

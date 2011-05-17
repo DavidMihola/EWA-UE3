@@ -13,8 +13,9 @@ public class MemoryGame {
     private MemoryPlayer player1;
     private MemoryPlayer player2;
     private MemoryBoard board;
-
     private final String backcardpath = "../img/card_background.png";
+
+    private MemoryPlayer currentPlayer;
 
     public MemoryGame(int pairs) {
         board = new MemoryBoard<String>();
@@ -49,8 +50,17 @@ public class MemoryGame {
         return board;
     }
 
-    public void tryCardPlayer1(int index) {
-        if (board.tryCard(index) != MemoryBoardState.UNFINISHED_TURN)
-            player1.addTry();
+    public void tryCard(int index) {
+        board.tryCard(index);
+        if (board.getState() != MemoryBoardState.UNFINISHED_TURN) {
+            currentPlayer.addTry();
+        }
     }
+
+    public void start() {
+        board.start();
+        currentPlayer = player1;
+    }
+
+
 }

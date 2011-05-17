@@ -144,18 +144,20 @@
                                 <f:param name="index" value="#{card.index}"/>
                             </h:commandLink>
                             </ui:remove>
-                            <f:ajax>
+
+                            
                             <h:commandLink value="#{card.index}" actionListener="#{userSessionBean.setIndexString}" action="${userSessionBean.tryCard}">
                                 <f:attribute name="index" value="#{card.index}"/>
                                 <h:graphicImage value="#{card.visibleSide}"
                                                 alt="Karte Nummer #{card.index} aufdecken"/>
                                     <!-- TODO: msg.card_alt_{head,tail}-->
                             </h:commandLink>
-                            </f:ajax>
+                            
                         </ui:repeat>
                     </h:panelGrid>
 
                 </div>
+                <h:outputText value="#{userSessionBean.currentGame.board.state}"/>
             </h:form>
             <hr class="solid_clear" />
         </ui:define>
