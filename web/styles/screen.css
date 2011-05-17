@@ -155,6 +155,22 @@ label {
 	vertical-align: middle;
 }
 
+#cards td {
+        margin: 17px;
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	vertical-align: middle;
+        background: url("../img/card_background.png") no-repeat;
+}
+
+#cards td a {
+    display: table-cell;
+	width: 117px;
+	height: 117px;
+	vertical-align: middle;
+}
+
 #stats {
 	background-color: #003366;
 	color: white;
