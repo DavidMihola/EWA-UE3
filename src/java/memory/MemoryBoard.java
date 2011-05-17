@@ -105,7 +105,9 @@ public class MemoryBoard<T> {
     }
 
     public boolean turnFinished() {
-        return ((state == MemoryBoardState.PAIR_FOUND) || (state == MemoryBoardState.NO_PAIR_FOUND));
+        return ((state == MemoryBoardState.PAIR_FOUND) ||
+                (state == MemoryBoardState.NO_PAIR_FOUND) ||
+                (state == MemoryBoardState.GAME_OVER));
     }
 
     public boolean gameOver() {

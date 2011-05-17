@@ -27,6 +27,7 @@
     </head>
 
     <body>
+
     <ui:composition template="./template.xhtml">
 
         <ui:define name="navigation">
@@ -78,7 +79,7 @@
                         <tbody>
                             <tr>
                                 <th>Restliche Paare</th>
-                                <td><!--<h:outputText value="#{userSessionBean.currentGame.board.remainingPairs}"/>--></td>
+                                <td><h:outputText value="#{userSessionBean.currentGame.board.remainingPairs}"/></td>
                             </tr>
                         </tbody>
                     </table>
@@ -106,23 +107,23 @@
                                 <th>Kartenspalte 5</th>
 
                             </tr>
-                                <ui:repeat value="#{userSessionBean.currentGame.board.cards}" var="row" >
-                                    <tr>
-                                        <th class="hidden">Kartenzeile #{userSessionBean.currentGame.board.cards.indexOf(row)+1}</th>
-                                    <ui:repeat value="#{userSessionBean.currentGame.board.cards}" var="card" >
-                                        <td class="#{card.isRevealed?'visible_card':'invisible_card'}">
-                                            <h:graphicImage value="#{card.visibleSide}" >
+                            <ui:repeat value="#{userSessionBean.currentGame.board.cards}" var="row" >
+                                <tr>
+                                    <th class="hidden">Kartenzeile #{userSessionBean.currentGame.board.cards.indexOf(row)+1}</th>
+                                <ui:repeat value="#{userSessionBean.currentGame.board.cards}" var="card" >
+                                    <td class="#{card.isRevealed?'visible_card':'invisible_card'}">
+                                    <h:graphicImage value="#{card.visibleSide}" >
 
-                                                <f:ajax action="#{}userSessionBean.currentgame.boary.tryCard}">
-                                        <f:param name="index" value="#{card.index}"/>
-                                    </f:ajax>
+                                        <f:ajax action="#{}userSessionBean.currentgame.boary.tryCard}">
+                                            <f:param name="index" value="#{card.index}"/>
+                                        </f:ajax>
 
 
-                                            </h:graphicImage>
-                                        </td>
-                                    </ui:repeat>
-                                    </tr>
+                                    </h:graphicImage>
+                                    </td>
                                 </ui:repeat>
+                                </tr>
+                            </ui:repeat>
                         </table>
                     </ui:remove>
 
@@ -131,28 +132,29 @@
                     Bean auslesen; dann können wir die Verwaltung der Karten als Liste beibehalten und
                     brauchen uns sonst nirgends um Zeilen und Spalten kümmern. D. h. wir haben dann
                     zwar eine Tabelle, die Karten wären aber einfach von 1 bis n² durchnummeriert -->
-                    
+
                     <h:panelGrid columns="2" styleClass="table">
                         <ui:repeat value="#{userSessionBean.currentGame.board.cards}" var="card">
                             <ui:remove>
-                            <h:commandLink id="visible_card"
-                                           action="#{userSessionBean.tryCard}">
-                                <h:graphicImage value="#{card.visibleSide}"
-                                                alt="Karte Nummer #{card.index} aufdecken"/>
+                                <h:commandLink id="visible_card"
+                                               action="#{userSessionBean.tryCard}">
+                                    <h:graphicImage value="#{card.visibleSide}"
+                                                    alt="Karte Nummer #{card.index} aufdecken"/>
                                     <!-- TODO: msg.card_alt_{head,tail}-->
 
-                                <f:param name="index" value="#{card.index}"/>
-                            </h:commandLink>
+                                    <f:param name="index" value="#{card.index}"/>
+                                </h:commandLink>
                             </ui:remove>
 
-                            
-                            <h:commandLink value="#{card.index}" actionListener="#{userSessionBean.setIndexString}" action="${userSessionBean.tryCard}">
-                                <f:attribute name="index" value="#{card.index}"/>
-                                <h:graphicImage value="#{card.visibleSide}"
-                                                alt="Karte Nummer #{card.index} aufdecken"/>
+                                <h:commandButton value="#{card.index}" actionListener="#{userSessionBean.setIndexString}" action="${userSessionBean.clickCard}">
+                                    <f:attribute name="index" value="#{card.index}"/>
+                                    <h:graphicImage value="#{card.visibleSide}"
+                                                    alt="Karte Nummer #{card.index} aufdecken"/>
                                     <!-- TODO: msg.card_alt_{head,tail}-->
-                            </h:commandLink>
-                            
+                                    <!-- hier sollte irgendwie weniger neu gezeichnet werden als @form
+                                    aber ich komm nicht drauf, wie... -->
+                                    <f:ajax execute="@form" render="@form"/>
+                                </h:commandButton>
                         </ui:repeat>
                     </h:panelGrid>
 

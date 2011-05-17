@@ -38,7 +38,6 @@ public class GameFactory {
         String name = userSessionBean.getUsername();
         game.setPlayer1(new MemoryPlayer(name));
         game.setPlayer2(new MemoryPlayer("Gegner"));
-        // game.setBoard(new MemoryBoard(TODO)); // or NOT TODO ?
         game.start();
         userSessionBean.setCurrentGame(game);
         return ("/table.xhtml");

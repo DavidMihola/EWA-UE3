@@ -10,7 +10,7 @@ import javax.faces.bean.SessionScoped;
 
 import java.io.Serializable;
 
-import memory.MemoryGame;
+import memory.*;
 
 import javax.faces.event.ActionEvent;
 
@@ -25,8 +25,8 @@ public class UserSessionBean implements Serializable {
     private MemoryGame currentGame;
     private String username;
     private String backcardpath = "../img/card_background.png";
-
     private String indexString; /* ugly */
+
 
     /** Creates a new instance of UserSessionBean */
     public UserSessionBean() {
@@ -71,9 +71,14 @@ public class UserSessionBean implements Serializable {
         indexString = event.getComponent().getAttributes().get("index").toString();
     }
 
-    public String tryCard() {
-        currentGame.tryCard(Integer.parseInt(indexString));
-        return("/table.xhtml");
+    public void clickCard() {
+        if (currentGame.gameOver()) {
+            // was soll hier passieren?
+        } else if (currentGame.turnFinished()) {
+            currentGame.nextTurn();
+        } else {
+            currentGame.tryCard(Integer.parseInt(indexString));
+        }
     }
     /* /ugly */
 }

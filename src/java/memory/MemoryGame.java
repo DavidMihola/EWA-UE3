@@ -77,13 +77,33 @@ public class MemoryGame {
 
     public void tryCard(int index) {
         board.tryCard(index);
-        if (board.getState() != MemoryBoardState.UNFINISHED_TURN) {
+        if (board.turnFinished()) {
             currentPlayer.incTries();
+            if(board.getState() == MemoryBoardState.PAIR_FOUND) {
+                board.nextTurn();
+            }
         }
+    }
+
+    public boolean turnFinished() {
+        return board.turnFinished();
+    }
+
+    public boolean gameOver() {
+        return board.gameOver();
+    }
+
+    public void nextTurn() {
+        board.nextTurn();
+        // currentPlayer = nächster Spieler;
     }
 
     public void start() {
         board.start();
         currentPlayer = player1;
+    }
+
+    public int getRemainingPairs() {
+        return board.getRemainingPairs();
     }
 }
