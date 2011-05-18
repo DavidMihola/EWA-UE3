@@ -19,7 +19,7 @@ public class MemoryGame {
     private final String backcardpath = null; //"../img/card_background.png";
     private MemoryPlayer currentPlayer;
     private final int stackSize;
-    private final MemoryCard[][] cardMatrix;
+    private MemoryCard[][] cardMatrix;
 
     public MemoryGame(int stackSize) {
         this.stackSize = stackSize;
@@ -54,22 +54,6 @@ public class MemoryGame {
         for (int i = 0; i < pairs; i++) {
             board.addPair(allFlagPaths.get(i), backcardpath);
         }
-
-        cardMatrix = new MemoryCard[stackSize][stackSize];
-        int row = 0;
-        int col = 0;
-
-        ArrayList<MemoryCard<String>> cardList = board.getCards();
-
-        for (MemoryCard<String> card : cardList) {
-            cardMatrix[row][col] = card;
-            col ++;
-            if (col >= stackSize) {
-                row++;
-                col = 0;
-            }
-        }
-        
      }
 
     public MemoryCard<String>[][] getRows() {
@@ -104,6 +88,9 @@ public class MemoryGame {
         board.tryCard(index);
         if (board.turnFinished()) {
             currentPlayer.incTries();
+            if(board.getState() == MemoryBoardState.PAIR_FOUND ||
+                board.getState() == MemoryBoardState.GAME_OVER)
+                    currentPlayer.increaseScore();
             if(board.getState() == MemoryBoardState.PAIR_FOUND) {
                 board.nextTurn();
             }
@@ -125,7 +112,25 @@ public class MemoryGame {
 
     public void start() {
         board.start();
+
+        cardMatrix = new MemoryCard[stackSize][stackSize];
+        int row = 0;
+        int col = 0;
+
+        ArrayList<MemoryCard<String>> cardList = board.getCards();
+
+        for (MemoryCard<String> card : cardList) {
+            cardMatrix[row][col] = card;
+            col ++;
+            if (col >= stackSize) {
+                row++;
+                col = 0;
+            }
+        }
+        
         currentPlayer = player1;
+        currentPlayer.startTimer();
+        player2.resetTimer(); // Gegner.Zeit soll 0:0 sein
     }
 
     public int getRemainingPairs() {
