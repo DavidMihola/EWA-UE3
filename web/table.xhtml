@@ -42,7 +42,7 @@
             <h:form id="dynamic">
                 <div id="stats">
                     <h2 class="hidden"><h:outputText value="#{msg.information_about_game}"/></h2>
-                    <h3>Spielstand</h3>
+                    <h3><h:outputText value="#{msg.score}"/></h3>
                     <table id="current"
                            title="Spielstand im aktuellen Spiel"
                            summary="Spielstand im aktuellen Spiel">
@@ -55,29 +55,29 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th>Paare</th>
+                                <th><h:outputText value="#{msg.pairs}"/></th>
                                 <td><h:outputText value="#{userSessionBean.currentGame.player1.pairs}"/></td>
                         <td><h:outputText value="#{userSessionBean.currentGame.player2.pairs}"/></td>
                         </tr>
                         <tr>
-                            <th>Versuche</th>
+                            <th><h:outputText value="#{msg.tries}"/></th>
                             <td><h:outputText value="#{userSessionBean.currentGame.player1.tries}"/></td>
                         <td><h:outputText value="#{userSessionBean.currentGame.player2.tries}"/></td>
                         </tr>
                         <tr>
-                            <th>Zeit</th>
+                            <th><h:outputText value="#{msg.time}"/></th>
                             <td><h:outputText value="#{userSessionBean.currentGame.player1.time}"/></td>
                         <td><h:outputText value="#{userSessionBean.currentGame.player2.time}"/></td>
                         </tr>
                         </tbody>
                     </table>
-                    <h3>Spielinformationen</h3>
+                    <h3><h:outputText value="#{msg.game_info}"/></h3>
                     <table id="remaining"
                            title="Anzahl der restlichen Paare"
                            summary="Anzahl der restlichen Paare">
                         <tbody>
                             <tr>
-                                <th>Restliche Paare</th>
+                                <th><h:outputText value="#{msg.rmng_pairs}"/></th>
                                 <td><h:outputText value="#{userSessionBean.currentGame.board.remainingPairs}"/></td>
                         </tr>
                         </tbody>
@@ -85,46 +85,14 @@
 
                     <h3>Highscore</h3>
                     <ul>
-                        <li><a href="?petra">Petra: 165 Punkte</a></li>
-                        <li><a href="?manuel">Manuel: 128 Punkte</a></li>
-                        <li><a href="?lena">Lena: 115 Punkte</a></li>
-                        <li><a href="?andi">Andi: 99 Punkte</a></li>
+                        <li><a href="?petra">Petra: 165 <h:outputText value="#{msg.points}"/></a></li>
+                        <li><a href="?manuel">Manuel: 128 <h:outputText value="#{msg.points}"/></a></li>
+                        <li><a href="?lena">Lena: 115 <h:outputText value="#{msg.points}"/></a></li>
+                        <li><a href="?andi">Andi: 99 <h:outputText value="#{msg.points}"/></a></li>
                     </ul>
                 </div>
                 <div id="cards">
                     <h2 class="hidden"><h:outputText value="#{msg.game_board}"/></h2>
-
-                    <!-- das ui:remove wirkt wie ein Kommentar, der auch für EL-Ausdrücke funktioniert -->
-                    <!-- mit dem zusätzlichen Vorteil dass der Editor es nicht als Kommentar kennzeichnet -->
-                    <ui:remove>
-                        <table summary="Diese Tabelle stellt das Memory-Brett mit den Karten dar">
-                            <tr class="hidden">
-                                <th>Kartenspalte 1</th>
-                                <th>Kartenspalte 2</th>
-                                <th>Kartenspalte 3</th>
-                                <th>Kartenspalte 4</th>
-                                <th>Kartenspalte 5</th>
-
-                            </tr>
-                            <ui:repeat value="#{userSessionBean.currentGame.rows}" var="row" >
-                                <tr>
-                                    <th class="hidden">Kartenzeile #{userSessionBean.currentGame.board.cards.indexOf(row)+1}</th>
-                                <ui:repeat value="#{userSessionBean.currentGame.board.cards}" var="card" >
-                                    <td class="#{card.isRevealed?'visible_card':'invisible_card'}">
-                                    <h:graphicImage value="#{card.visibleSide}" >
-
-                                        <f:ajax action="#{}userSessionBean.currentgame.boary.tryCard}">
-                                            <f:param name="index" value="#{card.index}"/>
-                                        </f:ajax>
-
-
-                                    </h:graphicImage>
-                                    </td>
-                                </ui:repeat>
-                                </tr>
-                            </ui:repeat>
-                        </table>
-                    </ui:remove>
 
                     <table>
                         <ui:repeat value="#{userSessionBean.currentGame.rows}" var="row">
@@ -136,8 +104,6 @@
                                     <h:graphicImage styleClass="visible_card" rendered="#{card.revealed}"
                                                     value="#{card.visibleSide}"
                                                     alt="#{msg.card_alt_head} #{card.index} #{msg.card_alt_tail}"/>
-                                    <!-- hier sollte irgendwie weniger neu gezeichnet werden als @form
-                                    aber ich komm nicht drauf, wie... -->
                                     <f:ajax execute="@form" render="@form"/>
                                 </h:commandLink>
                                 </td>
@@ -148,7 +114,9 @@
 
     
                 </div>
-                <h:outputText value="#{userSessionBean.currentGame.board.state}"/>
+                <ui:remove>
+                    <h:outputText value="#{userSessionBean.currentGame.board.state}"/>
+                </ui:remove>
             </h:form>
             <hr class="solid_clear" />
         </ui:define>

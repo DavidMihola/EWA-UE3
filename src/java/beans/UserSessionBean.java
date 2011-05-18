@@ -89,5 +89,17 @@ public class UserSessionBean implements Serializable {
             currentGame.tryCard(Integer.parseInt(indexString));
         }
     }
+
+    public String getWidth() {
+        try {
+            int i = currentGame.getStackSize();
+            if (i == 2) return "small";
+            else if(i == 4) return "normal";
+            else return "big";
+        } catch (NullPointerException ex) {
+            return "normal";
+        }
+
+    }
     /* /ugly */
 }

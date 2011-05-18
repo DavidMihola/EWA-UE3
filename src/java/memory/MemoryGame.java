@@ -136,4 +136,8 @@ public class MemoryGame {
     public int getRemainingPairs() {
         return board.getRemainingPairs();
     }
+
+    public int getStackSize() {
+        return stackSize;
+    }
 }
