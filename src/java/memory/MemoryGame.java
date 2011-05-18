@@ -51,7 +51,7 @@ public class MemoryGame {
 
         Collections.shuffle(allFlagPaths);
 
-        for (int i = 1; i <= pairs; i++) {
+        for (int i = 0; i < pairs; i++) {
             board.addPair(allFlagPaths.get(i), backcardpath);
         }
 

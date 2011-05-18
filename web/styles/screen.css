@@ -162,6 +162,8 @@ label {
 	height: 100px;
 	vertical-align: middle;
         background: url("../img/card_background.png") no-repeat;
+        position: relative;
+
 }
 
 #cards td a {
@@ -169,6 +171,14 @@ label {
 	width: 117px;
 	height: 117px;
 	vertical-align: middle;
+}
+
+#cards td img.visible_card {
+    width: 80px;
+    height: 48px;
+    position: absolute;
+    left: 10px;
+    top: 26px;
 }
 
 #stats {

@@ -134,10 +134,9 @@
                                 <td class="flag">
                                 <h:commandLink actionListener="#{userSessionBean.setIndexString}" action="${userSessionBean.clickCard}">
                                     <f:attribute name="index" value="#{card.index}"/>
-                                    <h:graphicImage rendered="#{card.revealed}"
+                                    <h:graphicImage styleClass="visible_card" rendered="#{card.revealed}"
                                                     value="#{card.visibleSide}"
-                                                    alt="Karte Nummer #{card.index} aufdecken"/>
-                                    <!-- TODO: msg.card_alt_{head,tail}-->
+                                                    alt="#{msg.card_alt_head} #{card.index} #{msg.card_alt_tail}"/>
                                     <!-- hier sollte irgendwie weniger neu gezeichnet werden als @form
                                     aber ich komm nicht drauf, wie... -->
                                     <f:ajax execute="@form" render="@form"/>
