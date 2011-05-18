@@ -44,11 +44,11 @@ public class UserDataBaseUser {
         return stackSize;
     }
 
-    public String getRealName() {
-        return firstname + " " + lastname;
+    public String getRealName() { // TODO: rename
+        return firstname + " " + lastname + ", DOB: " + dateOfBirth;
     }
 
     public String getAsString() {
-        return username + " " + password + " " + stackSize;
+        return username + ", PW: " + password + ", SS: " + stackSize;
     }
 }
