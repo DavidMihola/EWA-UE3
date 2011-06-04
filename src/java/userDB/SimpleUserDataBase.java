@@ -20,14 +20,14 @@ public class SimpleUserDataBase implements UserDataBase{
 
     public SimpleUserDataBase() {
         users = new HashMap<String, UserDataBaseUser>();
-        addUser("David", "david2901", 2);
-        addUser("Flo", "florian4x4", 4);
+        addUser("David", "david2901", "2x3", "Africa");
+        addUser("Flo", "florian4x4", "2x2", "Europe");
         getUser("Flo").setAdditionalData("Florian", "Mihola", new Date());
     }
 
     @Override
-    public void addUser(String username, String password, int stackSize) {
-        UserDataBaseUser user = new UserDataBaseUser(username, password, stackSize);
+    public void addUser(String username, String password, String gameSize, String continent) {
+        UserDataBaseUser user = new UserDataBaseUser(username, password, gameSize, continent);
         if (! userExists(username) ) {
             users.put(username, user);
         }

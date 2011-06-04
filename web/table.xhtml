@@ -56,17 +56,17 @@
                         <tbody>
                             <tr>
                                 <th><h:outputText value="#{msg.pairs}"/></th>
-                                <td><h:outputText value="#{userSessionBean.currentGame.player1.pairs}"/></td>
+                        <td><h:outputText value="#{userSessionBean.currentGame.player1.pairs}"/></td>
                         <td><h:outputText value="#{userSessionBean.currentGame.player2.pairs}"/></td>
                         </tr>
                         <tr>
                             <th><h:outputText value="#{msg.tries}"/></th>
-                            <td><h:outputText value="#{userSessionBean.currentGame.player1.tries}"/></td>
+                        <td><h:outputText value="#{userSessionBean.currentGame.player1.tries}"/></td>
                         <td><h:outputText value="#{userSessionBean.currentGame.player2.tries}"/></td>
                         </tr>
                         <tr>
                             <th><h:outputText value="#{msg.time}"/></th>
-                            <td><h:outputText value="#{userSessionBean.currentGame.player1.time}"/></td>
+                        <td><h:outputText value="#{userSessionBean.currentGame.player1.time}"/></td>
                         <td><h:outputText value="#{userSessionBean.currentGame.player2.time}"/></td>
                         </tr>
                         </tbody>
@@ -78,7 +78,7 @@
                         <tbody>
                             <tr>
                                 <th><h:outputText value="#{msg.rmng_pairs}"/></th>
-                                <td><h:outputText value="#{userSessionBean.currentGame.board.remainingPairs}"/></td>
+                        <td><h:outputText value="#{userSessionBean.currentGame.board.remainingPairs}"/></td>
                         </tr>
                         </tbody>
                     </table>
@@ -102,7 +102,7 @@
                                 <h:commandLink actionListener="#{userSessionBean.setIndexString}" action="${userSessionBean.clickCard}">
                                     <f:attribute name="index" value="#{card.index}"/>
                                     <h:graphicImage styleClass="visible_card" rendered="#{card.revealed}"
-                                                    value="#{card.visibleSide}"
+                                                    value="#{card.visibleSide.url}"
                                                     alt="#{msg.card_alt_head} #{card.index} #{msg.card_alt_tail}"/>
                                     <f:ajax execute="@form" render="@form"/>
                                 </h:commandLink>
@@ -112,7 +112,6 @@
                         </ui:repeat>
                     </table>
 
-    
                 </div>
                 <ui:remove>
                     <h:outputText value="#{userSessionBean.currentGame.board.state}"/>

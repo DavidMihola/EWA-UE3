@@ -18,7 +18,7 @@ public class UserDataBaseTest {
         UserDataBase db = new SimpleUserDataBase();
 
         // Registriere neuen User und teste Login
-        db.addUser("David", "dav1d", 2);
+        db.addUser("David", "dav1d", "2x2", "");
         assert(db.userExists("David"));
         assert(db.loginUser("David", "dav1d"));
 
@@ -26,7 +26,7 @@ public class UserDataBaseTest {
         // Eine zweite Registrierung ist nicht möglich,
         // d.h. im Moment gibt es keine Möglichkeit, das Passwort
         // zu ändern
-        db.addUser("David", "dav2d", 2);
+        db.addUser("David", "dav2d", "2x2", "");
         assert(db.userExists("David"));
         assertFalse(db.loginUser("David", "dav2d"));
 
@@ -35,7 +35,7 @@ public class UserDataBaseTest {
         assertFalse(db.loginUser("Florian", "fl0r1an"));
 
         // Zweiter Benützer wird angelegt
-        db.addUser("Florian", "fl0r1an", 2);
+        db.addUser("Florian", "fl0r1an", "2x2", "");
         assert(db.userExists("Florian"));
         assert(db.loginUser("Florian", "fl0r1an"));
 

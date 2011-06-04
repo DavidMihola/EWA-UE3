@@ -29,8 +29,8 @@ public class UserDataBaseBean implements UserDataBase {
     }
 
     @Override
-    public void addUser(String username, String password, int stackSize) {
-        db.addUser(username, password, stackSize);
+    public void addUser(String username, String password, String stackSize, String continent) {
+        db.addUser(username, password, stackSize, continent);
     }
 
     @Override

@@ -28,7 +28,8 @@ public class UserRegistrationBean implements Serializable {
     
     private String username;
     private String password;
-    private int stackSize = 2;
+    private String gameSize;
+    private String continent;
 
     private boolean additionalData;
     private String firstname;
@@ -68,12 +69,20 @@ public class UserRegistrationBean implements Serializable {
         return password;
     }
 
-    public void setStackSize(int stackSize) {
-        this.stackSize = stackSize;
+    public void setGameSize(String gameSize) {
+        this.gameSize = gameSize;
     }
 
-    public int getStackSize() {
-        return stackSize;
+    public String getGameSize() {
+        return gameSize;
+    }
+
+    public void setContinent(String continent) {
+        this.continent = continent;
+    }
+
+    public String getContinent() {
+        return continent;
     }
 
     public void setFirstname(String firstname) {
@@ -117,7 +126,7 @@ public class UserRegistrationBean implements Serializable {
     }
 
     public String register() {
-        userDataBaseBean.addUser(username, password, stackSize);
+        userDataBaseBean.addUser(username, password, gameSize, continent);
         if (additionalData) {
             UserDataBaseUser user = userDataBaseBean.getUser(username);
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");

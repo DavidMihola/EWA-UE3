@@ -4,8 +4,13 @@
  */
 package memory;
 
+import java.util.List;
 import java.util.ArrayList;
+
 import java.util.Collections;
+import java.lang.Integer;
+import java.lang.NumberFormatException;
+import at.ac.tuwien.big.flagservice.Flag;
 
 /**
  *
@@ -15,46 +20,42 @@ public class MemoryGame {
 
     private MemoryPlayer player1;
     private MemoryPlayer player2;
-    private MemoryBoard board;
+    private MemoryBoard<Flag> board;
     private final String backcardpath = null; //"../img/card_background.png";
     private MemoryPlayer currentPlayer;
-    private final int stackSize;
+    private String gameSize;
+    private final int rows;
+    private final int cols;
     private MemoryCard[][] cardMatrix;
 
-    public MemoryGame(int stackSize) {
-        this.stackSize = stackSize;
+    public MemoryGame(String gameSize, List<Flag> flags) {
+        this.gameSize = gameSize;
 
-        int pairs = stackSize * stackSize / 2;
-        
-        board = new MemoryBoard<String>();
+        String[] sizes = this.gameSize.split("x");
 
-        ArrayList<String> allFlagPaths = new ArrayList<String>();
-
-        allFlagPaths.add("../img/cards/at.jpg");
-        allFlagPaths.add("../img/cards/cz.jpg");
-        allFlagPaths.add("../img/cards/de.jpg");
-        allFlagPaths.add("../img/cards/dk.jpg");
-        allFlagPaths.add("../img/cards/es.jpg");
-        allFlagPaths.add("../img/cards/fi.jpg");
-        allFlagPaths.add("../img/cards/fr.jpg");
-        allFlagPaths.add("../img/cards/gr.jpg");
-        allFlagPaths.add("../img/cards/it.jpg");
-        allFlagPaths.add("../img/cards/jp.jpg");
-        allFlagPaths.add("../img/cards/kr.jpg");
-        allFlagPaths.add("../img/cards/no.jpg");
-        allFlagPaths.add("../img/cards/pt.jpg");
-        allFlagPaths.add("../img/cards/ro.jpg");
-        allFlagPaths.add("../img/cards/se.jpg");
-        allFlagPaths.add("../img/cards/tr.jpg");
-        allFlagPaths.add("../img/cards/uk.jpg");
-        allFlagPaths.add("../img/cards/us.jpg");
-
-        Collections.shuffle(allFlagPaths);
-
-        for (int i = 0; i < pairs; i++) {
-            board.addPair(allFlagPaths.get(i), backcardpath);
+        int tmpRows = 0;
+        try {
+            tmpRows = Integer.parseInt(sizes[0]);
+        } catch (NumberFormatException e) {
         }
-     }
+        rows = tmpRows;
+
+        int tmpCols = 0;
+        try {
+            tmpCols = Integer.parseInt(sizes[1]);
+        } catch (NumberFormatException e) {
+        }
+        cols = tmpCols;
+
+        int pairs = (rows * cols) / 2;
+
+        board = new MemoryBoard<Flag>();
+
+        for (Flag flag : flags) {
+            board.addPair(flag, null);
+        
+        }
+    }
 
     public MemoryCard<String>[][] getRows() {
         return cardMatrix;
@@ -88,13 +89,28 @@ public class MemoryGame {
         board.tryCard(index);
         if (board.turnFinished()) {
             currentPlayer.incTries();
-            if(board.getState() == MemoryBoardState.PAIR_FOUND ||
-                board.getState() == MemoryBoardState.GAME_OVER)
-                    currentPlayer.increaseScore();
-            if(board.getState() == MemoryBoardState.PAIR_FOUND) {
+            if (board.getState() == MemoryBoardState.PAIR_FOUND
+                    || board.getState() == MemoryBoardState.GAME_OVER) {
+                currentPlayer.increaseScore();
+            }
+            if (board.getState() == MemoryBoardState.PAIR_FOUND) {
                 board.nextTurn();
             }
         }
+    }
+
+    public String getStrings() {
+                ArrayList<MemoryCard<Flag>> cardList = board.getCards();
+
+                String output = "Kartenliste:";
+
+                output += cardList.size();
+
+                for (MemoryCard<Flag> card : cardList) {
+                      output = output + card.getVisibleSide().getUrl();
+                }
+
+                return output;
     }
 
     public boolean turnFinished() {
@@ -113,21 +129,21 @@ public class MemoryGame {
     public void start() {
         board.start();
 
-        cardMatrix = new MemoryCard[stackSize][stackSize];
+        cardMatrix = new MemoryCard[rows][cols];
         int row = 0;
         int col = 0;
 
-        ArrayList<MemoryCard<String>> cardList = board.getCards();
+        ArrayList<MemoryCard<Flag>> cardList = board.getCards();
 
-        for (MemoryCard<String> card : cardList) {
+        for (MemoryCard<Flag> card : cardList) {
             cardMatrix[row][col] = card;
-            col ++;
-            if (col >= stackSize) {
+            col++;
+            if (col >= cols) {
                 row++;
                 col = 0;
             }
         }
-        
+
         currentPlayer = player1;
         currentPlayer.startTimer();
         player2.resetTimer(); // Gegner.Zeit soll 0:0 sein
@@ -137,7 +153,7 @@ public class MemoryGame {
         return board.getRemainingPairs();
     }
 
-    public int getStackSize() {
-        return stackSize;
+    public int getCols() {
+        return cols;
     }
 }

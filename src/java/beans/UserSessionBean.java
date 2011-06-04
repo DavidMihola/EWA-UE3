@@ -92,7 +92,7 @@ public class UserSessionBean implements Serializable {
 
     public String getWidth() {
         try {
-            int i = currentGame.getStackSize();
+            int i = currentGame.getCols();
             if (i == 2) return "small";
             else if(i == 4) return "normal";
             else return "big";
