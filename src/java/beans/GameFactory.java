@@ -48,7 +48,7 @@ public class GameFactory {
         this.flagBean = FlagBean;
     }
     public String createAndJoinGame() {
-        String gameSize = userSessionBean.getUser().getStackSize();
+        String gameSize = userSessionBean.getUser().getGameSize();
         String continent = userSessionBean.getUser().getContinent();
 
         List<Flag> flags = flagBean.getFlags(continent, gameSize);

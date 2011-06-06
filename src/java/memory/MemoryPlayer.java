@@ -56,6 +56,10 @@ public class MemoryPlayer {
         timer.go();
     }
 
+    public void pauseTimer() {
+        timer.pause();
+    }
+
     public void resetTimer() {
         timer.reset();
     }

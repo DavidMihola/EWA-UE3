@@ -6,7 +6,8 @@
       lang="de"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:mc="http://java.sun.com/jsf/composite/ezcomp">
 
     <head>
         <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
@@ -111,19 +112,21 @@
 
                         </h:panelGroup>
                         <h:panelGroup layout="block"><h:messages for="password"/></h:panelGroup>
-                        <h:panelGroup layout="block" styleClass="feld">
-                            <h:outputLabel value="#{msg.stack_size}" for="stack_size"/>
-                            <h:selectOneMenu id="stack_size" value="#{userRegistrationBean.gameSize}">
-                                <f:selectItems value="#{flagBean.gameSizes}"/>
-                            </h:selectOneMenu>
-                        </h:panelGroup>
 
-                        <h:panelGroup layout="block" styleClass="feld">
-                            <h:outputLabel value="#{msg.continent}" for="continent"/>
-                            <h:selectOneMenu id="continent" value="#{userRegistrationBean.continent}">
-                                <f:selectItems value="#{flagBean.continents}"/>
-                            </h:selectOneMenu>
-                        </h:panelGroup>
+        <h:panelGroup layout="block" styleClass="feld">
+            <h:outputLabel value="#{msg.stack_size}" for="stack_size"/>
+            <h:selectOneMenu id="stack_size" value="#{userRegistrationBean.gameSize}">
+                <f:param value="#{cc.attrs.bean}" />
+                <f:selectItems value="#{flagBean.gameSizes}"/>
+            </h:selectOneMenu>
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" styleClass="feld">
+            <h:outputLabel value="#{msg.continent}" for="continent"/>
+            <h:selectOneMenu id="continent" value="#{userRegistrationBean.continent}">
+                <f:selectItems value="#{flagBean.continents}"/>
+            </h:selectOneMenu>
+        </h:panelGroup>
                     </fieldset>
                     <h:commandButton id="register" value="#{msg.register_title}" action="#{userRegistrationBean.register}"/>
                 </h:form>

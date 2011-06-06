@@ -14,17 +14,17 @@ public class UserDataBaseUser {
 
     private String username, password;
     private String firstname, lastname;
-    private String stackSize;
+    private String gameSize;
     private String continent;
     private Date dateOfBirth;
 
     public UserDataBaseUser() {
     }
 
-    public UserDataBaseUser(String username, String password, String stackSize, String continent) {
+    public UserDataBaseUser(String username, String password, String gameSize, String continent) {
         this.username = username;
         this.password = password;
-        this.stackSize = stackSize;
+        this.gameSize = gameSize;
         this.continent = continent;
     }
 
@@ -42,8 +42,12 @@ public class UserDataBaseUser {
         return username;
     }
 
-    public String getStackSize() {
-        return stackSize;
+    public String getGameSize() {
+        return gameSize;
+    }
+
+    public void setGameSize(String gameSize) {
+        this.gameSize = gameSize;
     }
 
     public String getRealName() { // TODO: rename
@@ -51,10 +55,14 @@ public class UserDataBaseUser {
     }
 
     public String getAsString() {
-        return username + ", PW: " + password + ", SS: " + stackSize;
+        return username + ", PW: " + password + ", SS: " + gameSize;
     }
 
     public String getContinent() {
         return continent;
+    }
+
+   public void setContinent(String continent) {
+        this.continent = continent;
     }
 }

@@ -53,7 +53,7 @@ public class MemoryGame {
 
         for (Flag flag : flags) {
             board.addPair(flag, null);
-        
+
         }
     }
 
@@ -89,28 +89,28 @@ public class MemoryGame {
         board.tryCard(index);
         if (board.turnFinished()) {
             currentPlayer.incTries();
-            if (board.getState() == MemoryBoardState.PAIR_FOUND
-                    || board.getState() == MemoryBoardState.GAME_OVER) {
-                currentPlayer.increaseScore();
-            }
             if (board.getState() == MemoryBoardState.PAIR_FOUND) {
+                currentPlayer.increaseScore();
                 board.nextTurn();
+            } else if (board.getState() == MemoryBoardState.GAME_OVER) {
+                currentPlayer.increaseScore();
+                currentPlayer.pauseTimer();
             }
         }
     }
 
     public String getStrings() {
-                ArrayList<MemoryCard<Flag>> cardList = board.getCards();
+        ArrayList<MemoryCard<Flag>> cardList = board.getCards();
 
-                String output = "Kartenliste:";
+        String output = "Kartenliste:";
 
-                output += cardList.size();
+        output += cardList.size();
 
-                for (MemoryCard<Flag> card : cardList) {
-                      output = output + card.getVisibleSide().getUrl();
-                }
+        for (MemoryCard<Flag> card : cardList) {
+            output = output + card.getVisibleSide().getUrl();
+        }
 
-                return output;
+        return output;
     }
 
     public boolean turnFinished() {
