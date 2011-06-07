@@ -85,10 +85,9 @@
 
                     <h3>Highscore</h3>
                     <ul>
-                        <li><a href="?petra">Petra: 165 <h:outputText value="#{msg.points}"/></a></li>
-                        <li><a href="?manuel">Manuel: 128 <h:outputText value="#{msg.points}"/></a></li>
-                        <li><a href="?lena">Lena: 115 <h:outputText value="#{msg.points}"/></a></li>
-                        <li><a href="?andi">Andi: 99 <h:outputText value="#{msg.points}"/></a></li>
+                        <ui:repeat value="#{userSessionBean.highscores}" var="score">
+                            <li><h:outputText value="#{score.playerName}"/>: <h:outputText value="#{score.scoreResult}"/></li>
+                        </ui:repeat>
                     </ul>
                 </div>
                 <div id="cards">
