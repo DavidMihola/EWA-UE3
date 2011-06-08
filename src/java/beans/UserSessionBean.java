@@ -109,7 +109,10 @@ public class UserSessionBean implements Serializable {
 
     public List<Score> getHighscores() throws Exception {
         FacebookConnector fbc = new FacebookConnectorImpl();
-        // TODO take 10
-        return fbc.getHighScoreList();
+        List<Score> all = fbc.getHighScoreList();
+        ArrayList<Score> take10 = new ArrayList<Score>();
+        for (int i = 0; i < 10 && i < all.size(); i++)
+            take10.add(all.get(i));
+        return take10;
     }
 }
