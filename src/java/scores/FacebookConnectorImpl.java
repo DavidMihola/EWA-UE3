@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import java.net.URL;
+import java.net.URLConnection;
 import java.io.BufferedReader;
+import java.io.OutputStreamWriter;
 import java.io.InputStreamReader;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
@@ -33,7 +35,7 @@ public class FacebookConnectorImpl implements FacebookConnector {
                 + APP_ID + "&client_secret=" + APP_SECRET
                 + "&grant_type=client_credentials");
         BufferedReader in = new BufferedReader(new InputStreamReader(graph.openStream()));
-        
+
         String line = in.readLine();
         if (line == null) {
             throw new Exception("Could not retrieve access token!");
@@ -47,16 +49,24 @@ public class FacebookConnectorImpl implements FacebookConnector {
     public List<Score> getHighScoreList() throws Exception {
         URL graph = new URL("https://graph.facebook.com/"
                 + APP_ID + "/feed?"
-                + "&access_token=" + accessToken);
-        BufferedReader in = new BufferedReader(new InputStreamReader(graph.openStream()));
+                + "access_token=" + accessToken);
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(graph.openStream()));
 
         String all = "";
         String line;
         while ((line = in.readLine()) != null) {
             all += line + "\n";
         }
+        in.close();
 
         JSONObject json = new JSONObject(all);
+        if (!json.has("data")) {
+            System.out.println("What? no data!?");
+            System.out.println(all);
+            return new ArrayList<Score>();
+        }
+
         JSONArray ja = json.getJSONArray("data");
 
         ArrayList<Score> list = new ArrayList<Score>();
@@ -80,12 +90,42 @@ public class FacebookConnectorImpl implements FacebookConnector {
         }
 
         Collections.sort(list, new ScoreComparator());
+        
         return list;
     }
 
     @Override
     public Integer publishHighScoreResult(Score score) throws Exception {
-        return 1;
+        URL post = new URL("https://graph.facebook.com/" + APP_ID + "/feed?"
+                + "access_token=" + accessToken);
+        URLConnection conn = post.openConnection();
+        conn.setDoOutput(true);
+        OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
+
+        //writer.write("access_token=" + accessToken + "\n");
+        writer.write("message=" + score.getFacebookPublicationString() + "\n");
+        writer.flush();
+
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(conn.getInputStream()));
+
+        String line;
+        while ((line = in.readLine()) != null)
+            System.out.println("got: " + line);
+
+        writer.close();
+        in.close();
+        
+        List<Score> scores = getHighScoreList();
+        
+        int place = 1;
+        for (Score s : scores) {
+            if (score.getScoreResult() >= s.getScoreResult()) {
+                break;
+            }
+            place++;
+        }
+        return place;
     }
 
     @Override
