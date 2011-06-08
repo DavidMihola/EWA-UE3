@@ -63,4 +63,8 @@ public class MemoryPlayer {
     public void resetTimer() {
         timer.reset();
     }
+    
+    public int getMyScoreResult() {
+        return 300 - (((int) timer.getTime() / 1000) / pairs);
+    }
 }

@@ -102,7 +102,6 @@ public class FacebookConnectorImpl implements FacebookConnector {
         conn.setDoOutput(true);
         OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
 
-        //writer.write("access_token=" + accessToken + "\n");
         writer.write("message=" + score.getFacebookPublicationString() + "\n");
         writer.flush();
 
