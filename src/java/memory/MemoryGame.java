@@ -12,6 +12,12 @@ import java.lang.Integer;
 import java.lang.NumberFormatException;
 import at.ac.tuwien.big.flagservice.Flag;
 
+import java.util.List;
+import java.util.ArrayList;
+import scores.Score;
+import scores.FacebookConnector;
+import scores.FacebookConnectorImpl;
+
 /**
  *
  * @author david
@@ -27,6 +33,7 @@ public class MemoryGame {
     private final int rows;
     private final int cols;
     private MemoryCard[][] cardMatrix;
+    private List<Score> highscores;
 
     public MemoryGame(String gameSize, List<Flag> flags) {
         this.gameSize = gameSize;
@@ -55,6 +62,15 @@ public class MemoryGame {
             board.addPair(flag, null);
 
         }
+
+        try {
+            highscores = new ArrayList<Score>();
+            FacebookConnector fbc = new FacebookConnectorImpl();
+            List<Score> all = fbc.getHighScoreList();
+            for (int i = 0; i < 10 && i < all.size(); i++)
+                highscores.add(all.get(i));
+        }
+        catch (Exception e) {}
     }
 
     public MemoryCard<String>[][] getRows() {
@@ -155,5 +171,9 @@ public class MemoryGame {
 
     public int getCols() {
         return cols;
+    }
+
+    public List<Score> getHighscores() {
+        return highscores;
     }
 }

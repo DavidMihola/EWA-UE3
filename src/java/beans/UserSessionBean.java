@@ -15,12 +15,6 @@ import userDB.UserDataBaseUser;
 
 import javax.faces.event.ActionEvent;
 
-import java.util.List;
-import java.util.ArrayList;
-import scores.Score;
-import scores.FacebookConnector;
-import scores.FacebookConnectorImpl;
-
 /**
  *
  * @author david
@@ -104,15 +98,5 @@ public class UserSessionBean implements Serializable {
         } catch (NullPointerException ex) {
             return "normal";
         }
-
-    }
-
-    public List<Score> getHighscores() throws Exception {
-        FacebookConnector fbc = new FacebookConnectorImpl();
-        List<Score> all = fbc.getHighScoreList();
-        ArrayList<Score> take10 = new ArrayList<Score>();
-        for (int i = 0; i < 10 && i < all.size(); i++)
-            take10.add(all.get(i));
-        return take10;
     }
 }

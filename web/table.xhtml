@@ -85,7 +85,7 @@
 
                     <h3>Highscore</h3>
                     <ul>
-                        <ui:repeat value="#{userSessionBean.highscores}" var="score">
+                        <ui:repeat value="#{userSessionBean.currentGame.highscores}" var="score">
                             <li><h:outputText value="#{score.playerName}"/>: <h:outputText value="#{score.scoreResult}"/></li>
                         </ui:repeat>
                     </ul>
