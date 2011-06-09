@@ -34,6 +34,7 @@ public class MemoryGame {
     private final int cols;
     private MemoryCard[][] cardMatrix;
     private List<Score> highscores;
+    private FacebookConnector fbc;
 
     public MemoryGame(String gameSize, List<Flag> flags) {
         this.gameSize = gameSize;
@@ -65,7 +66,7 @@ public class MemoryGame {
 
         try {
             highscores = new ArrayList<Score>();
-            FacebookConnector fbc = new FacebookConnectorImpl();
+            FacebookConnector fbc = getFacebookConnector();
             List<Score> all = fbc.getHighScoreList();
             for (int i = 0; i < 10 && i < all.size(); i++)
                 highscores.add(all.get(i));
@@ -111,6 +112,8 @@ public class MemoryGame {
             } else if (board.getState() == MemoryBoardState.GAME_OVER) {
                 currentPlayer.increaseScore();
                 currentPlayer.pauseTimer();
+                publishScoreForPlayer(player1);
+                //publishScoreForPlayer(player2);
             }
         }
     }
@@ -175,5 +178,26 @@ public class MemoryGame {
 
     public List<Score> getHighscores() {
         return highscores;
+    }
+
+    private void publishScoreForPlayer(MemoryPlayer player) {
+        FacebookConnector fbc = getFacebookConnector();
+        try {
+            Integer place = fbc.publishHighScoreResult(player.getScore());
+            player.setPlace(place);
+        }
+        catch (Exception e) {}
+    }
+
+    // wie lange gilt ein access token?
+    private FacebookConnector getFacebookConnector() {
+        //return new FacebookConnectorImpl();
+        if (this.fbc == null)
+            try {
+                this.fbc = new FacebookConnectorImpl();
+            }
+            catch (Exception e) {}
+        
+        return this.fbc;
     }
 }

@@ -7,6 +7,8 @@ package memory;
 
 import timer.Timer;
 
+import scores.Score;
+
 /**
  *
  * @author david
@@ -16,11 +18,13 @@ public class MemoryPlayer {
     private int pairs;
     private int tries;
     private Timer timer;
+    private int place;
 
     public MemoryPlayer(String name) {
         this.name = name;
         pairs = 0;
         tries = 0;
+        place = -1;
         timer = new Timer();
     }
 
@@ -64,7 +68,19 @@ public class MemoryPlayer {
         timer.reset();
     }
     
-    public int getMyScoreResult() {
+    public int getScoreResult() {
         return 300 - (((int) timer.getTime() / 1000) / pairs);
+    }
+
+    public Score getScore() {
+        return new Score(getScoreResult(), name);
+    }
+
+    public void setPlace(Integer place) {
+        this.place = place;
+    }
+
+    public int getPlace() {
+        return place;
     }
 }
