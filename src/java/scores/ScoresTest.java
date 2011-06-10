@@ -20,6 +20,7 @@ public class ScoresTest {
         for (Score s : scores)
             System.out.println("\t" + s);
 
+        /*
         Score newScore = new Score(1, "OhManISuck");
         int place = fbc.publishHighScoreResult(newScore);
 
@@ -30,5 +31,6 @@ public class ScoresTest {
         for (Score s : scores)
             if (s.getPlayerName().equals("OhManISuck"))
                 System.out.println("\t" + s);
+         */
     }
 }
