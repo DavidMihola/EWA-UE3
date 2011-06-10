@@ -27,13 +27,15 @@ public class UserSessionBean implements Serializable {
     private String username;
     private UserDataBaseUser user;
     private String backcardpath = "../img/card_background.png";
-    private String indexString; /* ugly */
+    private String indexString;
+    private MemoryPlayer player;
 
 
     /** Creates a new instance of UserSessionBean */
     public UserSessionBean() {
         currentGame = null;
         username = null;
+        player = null;
     }
 
     public boolean getLoggedIn() {
@@ -81,6 +83,7 @@ public class UserSessionBean implements Serializable {
 
     public void clickCard() {
         if (currentGame.gameOver()) {
+
             // was soll hier passieren?
         } else if (currentGame.turnFinished()) {
             currentGame.nextTurn();
@@ -98,5 +101,13 @@ public class UserSessionBean implements Serializable {
         } catch (NullPointerException ex) {
             return "normal";
         }
+    }
+
+    public MemoryPlayer getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(MemoryPlayer player) {
+        this.player = player;
     }
 }

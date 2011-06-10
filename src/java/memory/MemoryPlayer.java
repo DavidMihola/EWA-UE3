@@ -83,4 +83,8 @@ public class MemoryPlayer {
     public int getPlace() {
         return place;
     }
+
+    public boolean getShowPlace() {
+        return (place != -1);
+    }
 }

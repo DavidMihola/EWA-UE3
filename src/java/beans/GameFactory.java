@@ -56,10 +56,13 @@ public class GameFactory {
         MemoryGame game = new MemoryGame(gameSize, flags);
 
         String name = userSessionBean.getUsername();
-        game.setPlayer1(new MemoryPlayer(name));
-        game.setPlayer2(new MemoryPlayer("Gegner"));
+        MemoryPlayer player1 = new MemoryPlayer(name);
+        MemoryPlayer player2 = new MemoryPlayer("Gegner");
+        game.setPlayer1(player1);
+        game.setPlayer2(player2);
         game.start();
         userSessionBean.setCurrentGame(game);
+        userSessionBean.setPlayer(player1);
         return ("/table.xhtml");
     }
 }

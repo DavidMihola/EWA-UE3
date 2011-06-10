@@ -63,7 +63,11 @@ public class MemoryGame {
             board.addPair(flag, null);
 
         }
+        
+        updateHighScores();
+    }
 
+    private void updateHighScores() {
         try {
             highscores = new ArrayList<Score>();
             FacebookConnector fbc = getFacebookConnector();
@@ -114,6 +118,7 @@ public class MemoryGame {
                 currentPlayer.pauseTimer();
                 publishScoreForPlayer(player1);
                 //publishScoreForPlayer(player2);
+                updateHighScores();
             }
         }
     }
@@ -191,7 +196,6 @@ public class MemoryGame {
 
     // wie lange gilt ein access token?
     private FacebookConnector getFacebookConnector() {
-        //return new FacebookConnectorImpl();
         if (this.fbc == null)
             try {
                 this.fbc = new FacebookConnectorImpl();

@@ -93,6 +93,9 @@
                 <div id="cards">
                     <h2 class="hidden"><h:outputText value="#{msg.game_board}"/></h2>
 
+                    <h:outputText rendered="#{userSessionBean.player.showPlace}"
+                                  value="#{msg.score_head} #{userSessionBean.player.place} #{msg.score_tail}"/>
+
                     <table>
                         <ui:repeat value="#{userSessionBean.currentGame.rows}" var="row">
                             <tr>

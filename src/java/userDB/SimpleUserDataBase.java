@@ -21,8 +21,8 @@ public class SimpleUserDataBase implements UserDataBase{
     public SimpleUserDataBase() {
         users = new HashMap<String, UserDataBaseUser>();
         addUser("David", "david2901", "2x3", "Africa");
-        addUser("Flo", "florian4x4", "2x2", "Europe");
-        getUser("Flo").setAdditionalData("Florian", "Mihola", new Date());
+        /*addUser("Flo", "florian4x4", "2x2", "Europe");
+        getUser("Flo").setAdditionalData("Florian", "Mihola", new Date());*/
     }
 
     @Override
